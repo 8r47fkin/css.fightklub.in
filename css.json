@@ -100,11 +100,11 @@
 			},
 
 			"Positioning and Stacking contexts": {
-                "Fixed Positioning": "api/en/csslayouts/positioning/fixed",
-				"Absolute Positioning": "api/en/csslayouts/positioning/absolute",
-				"Relative Positioning": "api/en/csslayouts/positioning/relative",
-				"Stacking contexts and z-index": "api/en/csslayouts/positioning/stacking",
-				"Sticky positioning": "api/en/csslayouts/positioning/sticky"
+                "Fixed Positioning": "api/en/css/layouts/positioning/fixed",
+				"Absolute Positioning": "api/en/css/layouts/positioning/absolute",
+				"Relative Positioning": "api/en/css/layouts/positioning/relative",
+				"Stacking contexts and z-index": "api/en/css/layouts/positioning/stacking",
+				"Sticky positioning": "api/en/css/layouts/positioning/sticky"
 			},
 
 			"Responsive Design": {
