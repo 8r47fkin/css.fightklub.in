@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<base href="../../../../../" />
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>Shorthand Properties</h1>
+        <br>
+        <p>
+            Shorthand properties are properties that let you set the values of several other properties
+            at one time. For example, font is a shorthand property that lets you set several font
+            properties. This declaration specifies font-style, font-weight, font-size, line
+           height, and font-family:
+        </p>
+        <xmp>font: italic bold 18px/1.2 "Helvetica", "Arial", sans-serif;</xmp>
+        <p>
+            Similarly, 
+            <ul>
+                <li> background is a shorthand property for multiple background properties:
+                    background-color, background-image, background-size, background-repeat,
+                    background-position, background-origin, background-chip, and background
+                   attachment.</li>
+                <li> border is a shorthand for border-width, border-style, and border-color, which
+                    are each in turn shorthand properties as well.</li>
+                <li> border-width is shorthand for the top, right, bottom, and left border widths. </li>
+            </ul>
+            Shorthand properties are useful for keeping your code succinct and clear, but a few
+ quirks about them aren’t readily apparent.
+            <h3><b>Beware shorthands silently overriding other styles </b></h3>
+            <p>
+                Most shorthand properties let you omit certain values and only specify the bits you’re
+ concerned with. It’s important to know, however, that doing this still sets the omitted
+ values; they’ll be set implicitly to their initial value. This can silently override styles you
+ specify elsewhere. If, for example, you were to use the shorthand font property for
+ the page title without specifying a font-weight, a font weight of normal would still be
+ set (figure 1.12).
+            </p>
+            <code>
+            <img src="" alt="">
+                git fetch git merge or git pull then git add . git commit -m "message"
+             </code>
+            <p>
+                Add the code from this listing to your stylesheet for an example of how this works.
+            </p>
+            <code>
+                <img src="" alt="">
+                    git fetch git merge or git pull then git add . git commit -m "message"
+            </code>
+            <p>
+                At first glance, it may seem that <xmp><h1 class="title"></xmp> would result in a bold heading,
+                    but it doesn’t. These styles are equivalent to this code.
+            </p>
+            <code>
+                <img src="" alt="">
+                    git fetch git merge or git pull then git add . git commit -m "message"
+            </code>
+            <p>
+                This means that applying these styles to <xmp><h1></xmp> results in a normal font weight, not bold.
+                    It can also override other font styles that would otherwise be inherited from an ances
+                   tor element. Of all the shorthand properties, font is the most egregious for causing
+                    problems, because it sets such a wide array of properties. For this reason, I avoid using
+                    it except to set general styles on the <xmp><body></xmp> element. You can still encounter this prob
+                   lem with other shorthand properties, so be aware of this possibility.
+            </p>
+            <h3><p>Understanding the order of shorthand values</p></h3>
+            <p>
+                Shorthand properties try to be lenient when it comes to the order of the values you
+                specify. You can set border: 1px solid black or border: black 1px solid and either
+                will work. That’s because it’s clear to the browser which value specifies the width,
+                which specifies the color, and which specifies the border style.
+            </p>
+            <p>
+                But there are many properties where the values can be more ambiguous. In these
+                cases, the order of the values is significant. It’s important to understand this order for
+                the shorthand properties you use.
+                <h3>TOP, RIGHT, BOTTOM, LEFT</h3>
+
+                    Shorthand property order particularly trips up developers when it comes to properties
+                like margin and padding, or some of the border properties that specify values for each
+                of the four sides of an element. For these properties, the values are in clockwise order,
+                beginning at the top. 
+            </p>
+                <p>
+                    Remembering this order can keep you out of trouble. In fact, the word TRouBLe is
+                an mnemonic you can use to remember the order: top, right, bottom, left.
+                </p>
+                <p>
+                    You can use this mnemonic to set padding on the four sides of an element. The links
+                    shown in figure 1.13 have a top padding of 10 px, right padding of 15 px, bottom pad
+                   ding of 0, and left padding of 5 px. This looks uneven, but it illustrates the principle.
+                
+                <code>
+                    <img src="" alt="">
+                        git fetch git merge or git pull then git add . git commit -m "message"
+                </code>
+                Properties whose values follow this pattern also support truncated notations. If the
+                declaration ends before one of the four sides is given a value, that side takes its value
+                from the opposite side. Specify three values, and the left and right side will both use
+                the second one. Specify two values, and the top and bottom will use the first one. If
+                you specify only one value, it will apply to all four sides. Thus, the following declara
+                tions are all equivalent:
+                <code>
+                    padding: 1em 2em;
+                    padding: 1em 2em 1em;
+                    padding: 1em 2em 1em 2em;
+                </code>
+                These are equivalent to one another as well:
+                <code>
+                    padding: 1em;
+                    padding: 1em 1em;
+                    padding: 1em 1em 1em;
+                    padding: 1em 1em 1em 1em;
+                </code>
+                For many developers, the most problematic of these is when three values are given.
+                Remember, this specifies the top, right, and bottom. Because no left value is given, it
+                will take the same value as the right; the second value will be applied to both the left
+                and right sides. Thus, padding: 10px 15px 0 applies 15 px padding to both the left
+                and right sides, whereas the top padding is 10 px and the bottom padding is 0.               
+            </p>
+            Most often, however, you’ll need two values. On smaller elements in particular, it’s
+            often better to have more padding on the sides than on the top and bottom. This
+            approach looks good on buttons or, in your page, navigational links (figure 1.14).
+            <code>
+                <img src="" alt="">
+                    git fetch git merge or git pull then git add . git commit -m "message"
+            </code>
+            Update your stylesheet to match this listing. It uses the property shorthand to apply
+            the vertical padding first, then the horizontal.
+            <code>
+                <img src="" alt="">
+                    git fetch git merge or git pull then git add . git commit -m "message"
+            </code>
+            Because so many common properties follow this pattern, it’s worth committing this
+            order to memory.
+            <h3><b>HORIZONTAL, VERTICAL</b></h3>
+            The TRouBLe mnemonic only applies to properties that apply individually to all four
+            sides of the box. Other properties only support up to two values. These include 
+            properties like background-position, box-shadow, and text-shadow (although these aren’t
+            shorthand properties, strictly speaking). Compared to the four-value properties like
+            padding, the order of these values is reversed. Whereas padding: 1em 2em specifies
+            the vertical top/bottom values first, followed by the horizontal right/left values,
+            background-position: 25% 75% specifies the horizontal right/left values first, 
+            followed by the vertical top/bottom values.
+            <p>
+                Although it seems counter-intuitive that these are opposite, the reason for this is
+     straightforward: the two values represent a Cartesian grid. Cartesian grid measurements are 
+     typically given in the order x, y (horizontal and then vertical). If, for example, 
+     you wanted to apply a shadow like the one shown in figure 1.15, you’d specify the
+     x (horizontal) value first.
+            </p>
+            <code>
+                <img src="" alt="">
+                  cascade from left ((git fetch && git merge) : (git pull)) && (git add .) + (git commit -m "message")
+            </code>
+            The first (larger) value applies to the horizontal offset, whereas the second (smaller)
+ value applies to the vertical.
+            <p>
+                If you’re working with a property that specifies two measurements from a corner,
+                think “Cartesian grid.” If you’re working with one that specifies measurements for
+                each side all the way around an element, think “clock.”
+            </p>
+            <h3><b>Summary</b></h3>
+            <ul>
+                <li> Keep selector specificity under control.</li>
+                <li>Don’t confuse cascade with inheritance.</li>
+                <li> Certain properties are inherited, including those for text, lists, and table borders.</li>
+                <li>Don’t confuse initial and auto values.</li>
+                <li>Stay out of TRouBLe with shorthand properties.</li>
+            </ul>
+        </p>
+        
+
+		<h2>Next Steps</h2>
+		<p>
+			Post Cascade, Specificity and Inheritance lets look at working with [link:#api/en/css/fundamentals/relativeunits/relativeunits Relative Units].
+		</p>
+	</body>
+</html>
