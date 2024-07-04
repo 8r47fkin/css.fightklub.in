@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<base href="../../../../../" />
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>Inheritance</h1>
+        <br>
+        <p>
+            There’s one last way that an element can receive styles—inheritance. The cascade is fre
+            quently conflated with the concept of inheritance. Although the two topics are
+             related, you should understand each individually.
+        </p>
+        <p>
+            If an element has no cascaded value for a given property, it may inherit one from
+            an ancestor element. It’s common to apply a font-family to the <body> element. All
+            the ancestor elements within will then inherit this font; you don’t have to apply it
+            explicitly to each element on the page. Figure 1.8 shows how inheritance flows down
+            the DOM tree.
+        </p>
+        <p>
+            Not all properties are inherited, however. By default, only certain ones are. In gen
+            eral, these are the properties you’ll want to be inherited. They are primarily properties
+             pertaining to text: color, font, font-family, font-size, font-weight, font-variant,
+             font-style, line-height, letter-spacing, text-align, text-indent, text-transform,
+             white-space, and word-spacing.
+        </p>
+        <p>A few others inherit as well, such as the list properties: list-style, list-style-type, 
+            list-style-position, and list-style-image. The table border properties,
+            border-collapse and border-spacing, are also inherited; note that these control
+            border behavior of tables, not the more commonly used properties for specifying
+            borders for non-table elements. (We wouldn’t want a <div> passing its border down to
+            every descendant element.) This is not quite a comprehensive list, but very nearly.
+           </p>
+           <img src="/api/en/css/fundamentals/csi/ex4.png" alt="inheritance" style="max-width: 100%; height: auto;">
+           <p>
+            You can use inheritance in your favor on your page by applying a font to the body
+            element, allowing its descendant elements to inherit that value (figure 1.9).
+           </p>
+           <code>
+            code update here - ref 1.9
+           </code>
+           <p>
+            Add this code to the top of your stylesheet to apply this principle to your page.
+           </p>
+           <code>
+            code update here - ref 1.13
+           </code>
+           <p>
+            This is applied to the entire page by adding it to the body. But you can also target a
+            specific element on the page, and it will only inherit to its descendant elements.
+            The inheritance will pass from element to element until it’s overridden by a cas
+           caded value.           
+           </p>
+           <h3><b> Use your DevTools!</b></h3>
+           <p>
+            A complicated nest of values inheriting and overriding one another can quickly
+ become difficult to keep track of. If you’re not already familiar with your browser’s
+ developer tools, get in the habit of using them.
+           </p>
+           <p>
+            DevTools provide visibility into exactly which rules are applying to which elements
+ and why. The cascade and inheritance are abstract concepts; DevTools are the
+ best way I know to get my bearings. Open them by right-clicking an element and
+ choosing Inspect or Inspect Element from the context menu. Here’s an example of
+ what you’ll see.
+           </p>
+           <img src="/api/en/css/fundamentals/csi/ex5.png" alt="inheritance" style="max-width: 100%; height: auto;">
+           <p>
+            The style inspector shows every selector targeting the inspected element, ordered by
+            specificity. Below that are all inherited properties. This shows all of the cascade and
+            inheritance for the element at a glance.
+           </p>
+           <p>
+            There are lots of subtle features to help you make sense of what's happening with
+            an element's styles. Styles closer to the top override those below. Overridden styles
+            are crossed out. The stylesheet and line number for each ruleset are shown on the
+            right, so you can find them in your source code. This tells you exactly which element
+            inherited which styles and where they originated. You can also type in the Filter box
+            at the top to hide all but a certain set of declarations.
+           </p>
+
+
+		<h2>Next Steps</h2>
+		<p>
+			Lets look at something [link:#api/en/css/fundamentals/csi/specialvalues Special values].
+		</p>
+	</body>
+</html>
