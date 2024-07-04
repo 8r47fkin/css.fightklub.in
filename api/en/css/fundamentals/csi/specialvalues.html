@@ -7,26 +7,99 @@
 		<link type="text/css" rel="stylesheet" href="page.css" />
 	</head>
 	<body>
-		<h1>Cascade, specificity, and inheritance</h1>
+		<h1>Special Values</h1>
         <br>
         <p>
-            CSS is unlike a lot of things in the world of software development. It’s not a programming language, strictly speaking, but it does require abstract thought. It’s not
- purely a design tool, but it does require some creativity. It provides a deceptively
- simple declarative syntax, but if you’ve worked with it on any large projects, you
- know it can grow into unwieldy complexity.
+            There are two special values that you can apply to any property to help manipulate the
+ cascade: inherit and initial. Let’s take a look at these.
+            <h3><b>Using the inherit keyword</b></h3>
+            <p>
+                Sometimes, you’ll want inheritance to take place when a cascaded value is preventing
+            it. To do this, you can use the keyword inherit. You can override another value with
+            this, and it will cause the element to inherit that value from its parent.
+            </p>
+            <p>
+                Suppose you add a light gray footer to your page. In the footer, there may be some
+ links, but you don’t want them to stand out too much because the footer’s isn’t an
+ important part of the page. So you’ll make the links in the footer dark gray (figure 1.10).
+            </p>
+            <code>
+                goes here - git update
+            </code>
+            <p>
+            Add this markup to the end of your page. A normal page would have more content
+ between this and the header, but this will serve the purpose.
+            </p>
+            <code>
+                goes here - git update
+            </code>
+            <p>
+                Typically, you’ll have a font color set for all links on the page (and if you don’t, the
+ user agent styles sets one), and that color is applied to the Terms of Use link as well.
+ To make the link in the footer gray, you’ll need to override it. Add this code to your
+ stylesheet to do that.
+            </p>
+            <code>
+                update here - git pull
+            </code>
+            <p>
+                The third ruleset here overrides the blue link color, giving the link in the footer a cas
+caded value of inherit. Thus, it inherits the color from its parent, <xmp><footer>.</xmp>
+            </p>
+            <p>
+                The benefit here is that the footer link will change along with the rest of the footer
+ should anything alter it. (Editing the second ruleset can do this, or another style else
+where could override it.) If, for example, the footer text on certain pages is a darker
+ gray, then the link will change to match.
+            </p>
+            <p>
+                You can also use the inherit keyword to force inheritance of a property not nor
+                mally inherited, such as border or padding. There are few practical uses for this, but
+                 you’ll see one useful case in chapter 3 when we look at box sizing.
+            </p>
+            <h3><b>Using the initial keyword</b></h3>
+            <p>
+                Sometimes you’ll find you have styles applied to an element that you want to undo.
+                You can do this by specifying the keyword initial. Every CSS property has an initial,
+                or default, value. If you assign the value initial to that property, then it effectively
+                resets to its default value. It’s like a hard-reset of that value. Figure 1.11 shows how
+                your footer renders if you give it a value of initial rather than inherit.
+            </p>
+            <code>
+                update here - git pull
+            </code>
+            <p>
+                The CSS in figure 1.11 is shown in the following listing. Because black is the initial
+ value for the color property in most browsers, color: initial is equivalent to color:
+ black.
+            </p>
+            <code>
+                update here - git pull
+            </code>
+            <p>
+                The benefit of this is you don’t have to think about it as much. If you want to remove a
+ border from an element, set border: initial. If you want to restore an element to its
+ default width, set width: initial.
+            </p>
+            <p>
+                You may be in the habit of using the value auto to do this sort of reset. In fact, you
+                can use width: auto to achieve the same result. This is because the default value of
+                width is auto.               
+            </p>
+            <p>
+                It’s important to note, however, that auto isn’t the default value for all properties.
+                It’s not even valid for many properties; for example, border-width: auto and pad
+               ding: auto are invalid and therefore have no effect. You could take the time to dig up
+                the initial value for these, but it’s often easier to use initial.
+            </p>
+            <code>
+                NOTE Declaring display: initial is equivalent to display: inline. It won’t
+                evaluate to display: block regardless of what type of element you apply it to.
+                That’s because initial resets to the initial value for the property, not the ele
+                ment; inline is the default value for the display property.
+            </code>
         </p>
-        <p>
-            When you need to learn to do something in conventional programming, you
-            can usually figure out what to search for (for example, “How do I find items of type
-            x in an array?”). With CSS, it’s not always easy to distill the problem down to a single
-            question. Even when you can, the answer is often “it depends.” The best way to
-            accomplish something is often contingent on your particular constraints and how precisely you’ll want to handle various edge cases.
-        </p>
-        <p>
-            While it’s helpful to know some “tricks” or useful recipes you can follow, mastering
- CSS requires an understanding of the principles that make those practices possible.
- This doc is full of examples, but it is primarily a doc of principles.
-        </p>
+
 
 		<h2>Next Steps</h2>
 		<p>
