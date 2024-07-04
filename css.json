@@ -24,7 +24,7 @@
                 "Making Sense of floats": "api/en/css/layouts/floats/floats",
 				"Flexbox": "api/en/css/layouts/flexbox/flexbox",
 				"Grid Layout": "api/en/css/layouts/grids/grids",
-				"Positioning and Stacking contexts": "api/en/csslayouts/positioning/positioning",
+				"Positioning and Stacking contexts": "api/en/css/layouts/positioning/positioning",
 				"Responsive Design": "api/en/css/layouts/responsive/responsive"
 			},
 
@@ -34,10 +34,10 @@
 			},
 
 			"Advanced Topics": {
-				"Background Shadow and Blend Modes": "api/en/css/advanced/blendmodes/blend-modes",
+				"Background Shadow and Blend Modes": "api/en/css/advanced/blendmodes/blend",
 				"Contrast, Color and Spacing": "api/en/css/advanced/ccs/ccs",
 				"Typography": "api/en/css/advanced/typography/typography",
-				"Transitions": "api/en/css/advanced/transitions/transitioning",
+				"Transitions": "api/en/css/advanced/transitions/transitions",
 				"Transforms": "api/en/css/advanced/transforms/transforms",
 				"Animations": "api/en/css/advanced/animations/animations"
 			}
@@ -54,20 +54,20 @@
 			},
 
 			"Working with Relative Units": {
-                "The Power of relative values": "api/en/css/fundamentals/relativeunits/relativeunits",
-				"Ems and rems": "api/en/css/fundamentals/relativeunits/relativeunits",
-				"Stop thinking in pixels": "api/en/css/fundamentals/relativeunits/relativeunits",
-				"Viewport relative units": "api/en/css/fundamentals/relativeunits/relativeunits",
-				"Unitless numbers and line-height": "api/en/css/fundamentals/relativeunits/relativeunits",
-				"Custom properties (aka CSS variables)": "api/en/css/fundamentals/relativeunits/relativeunits"
+                "The Power of relative values": "api/en/css/fundamentals/relativeunits/power",
+				"Ems and rems": "api/en/css/fundamentals/relativeunits/ems",
+				"Stop thinking in pixels": "api/en/css/fundamentals/relativeunits/stopthinkinginpixels",
+				"Viewport relative units": "api/en/css/fundamentals/relativeunits/viewport",
+				"Unitless numbers and line-height": "api/en/css/fundamentals/relativeunits/unitless",
+				"Custom properties (aka CSS variables)": "api/en/css/fundamentals/relativeunits/customproperties"
 			},
 
 			"Mastering the Box model": {
-                "Difficulties with Element width": "api/en/css/fundamentals/boxmodel/boxmodel",
-				"Difficulties with Element height": "api/en/css/fundamentals/boxmodel/boxmodel",
-				"Negative Margins": "api/en/css/fundamentals/boxmodel/boxmodel",
-				"Collapsed Margins": "api/en/css/fundamentals/boxmodel/boxmodel",
-				"Spacing Elements within a Containers": "api/en/css/fundamentals/boxmodel/boxmodel"
+                "Difficulties with Element width": "api/en/css/fundamentals/boxmodel/difficultieswithelementwidth",
+				"Difficulties with Element height": "api/en/css/fundamentals/boxmodel/difficultieswithelementheight",
+				"Negative Margins": "api/en/css/fundamentals/boxmodel/negativemargins",
+				"Collapsed Margins": "api/en/css/fundamentals/boxmodel/collapsedmargins",
+				"Spacing Elements within a Containers": "api/en/css/fundamentals/boxmodel/spacingelementswithincontainer"
 			}
 
 		},
@@ -75,43 +75,43 @@
 		"Mastering Layout": {
 
 			"Making Sense of floats": {
-                "The purpose of Floats": "api/en/css/layouts/floats/floats",
-				"Container collapsing and the clearfix": "api/en/css/layouts/floats/floats",
-				"Unexpected Float catching": "api/en/css/layouts/floats/floats",
-				"Media Objects and block formatting contexts": "api/en/css/layouts/floats/floats",
-				"Grid Systems": "api/en/css/layouts/floats/floats"
+                "The purpose of Floats": "api/en/css/layouts/floats/purpose",
+				"Container collapsing and the clearfix": "api/en/css/layouts/floats/container-collapsing-clearfix",
+				"Unexpected Float catching": "api/en/css/layouts/floats/float-catching",
+				"Media Objects and block formatting contexts": "api/en/css/layouts/floats/media-objects",
+				"Grid Systems": "api/en/css/layouts/floats/grid-system"
 			},
 
 			"Flexbox": {
-                "Flexbox Principles": "api/en/css/layouts/flexbox/flexbox",
-				"Flex item sizes": "api/en/css/layouts/flexbox/flexbox",
-				"Flex Direction": "api/en/css/layouts/flexbox/flexbox",
-				"Alignment, spacing and other details": "api/en/css/layouts/flexbox/flexbox",
-				"A couple things to be aware of": "api/en/css/layouts/flexbox/flexbox"
+                "Flexbox Principles": "api/en/css/layouts/flexbox/principles",
+				"Flex item sizes": "api/en/css/layouts/flexbox/itemsize",
+				"Flex Direction": "api/en/css/layouts/flexbox/direction",
+				"Alignment, spacing and other details": "api/en/css/layouts/flexbox/asd",
+				"A couple things to be aware of": "api/en/css/layouts/flexbox/aware"
 			},
 
 			"Grid Layout": {
-                "Web Layout is here": "api/en/css/layouts/grids/grids",
-				"Anatomy of a Grid": "api/en/css/layouts/grids/grids",
-				"Alternate Syntaxes": "api/en/css/layouts/grids/grids",
-				"Explicit and Implicit Grid": "api/en/css/layouts/grids/grids",
-				"Feature queries": "api/en/css/layouts/grids/grids",
-				"Alignment": "api/en/css/layouts/grids/grids"
+                "Web Layout is here": "api/en/css/layouts/grids/weblayout",
+				"Anatomy of a Grid": "api/en/css/layouts/grids/anatomy",
+				"Alternate Syntaxes": "api/en/css/layouts/grids/syntaxes",
+				"Explicit and Implicit Grid": "api/en/css/layouts/grids/explicit-implicit",
+				"Feature queries": "api/en/css/layouts/grids/feature-queries",
+				"Alignment": "api/en/css/layouts/grids/allignment"
 			},
 
 			"Positioning and Stacking contexts": {
-                "Fixed Positioning": "api/en/csslayouts/positioning/positioning",
-				"Absolute Positioning": "api/en/csslayouts/positioning/positioning",
-				"Relative Positioning": "api/en/csslayouts/positioning/positioning",
-				"Stacking contexts and z-index": "api/en/csslayouts/positioning/positioning",
-				"Sticky positioning": "api/en/csslayouts/positioning/positioning"
+                "Fixed Positioning": "api/en/csslayouts/positioning/fixed",
+				"Absolute Positioning": "api/en/csslayouts/positioning/absolute",
+				"Relative Positioning": "api/en/csslayouts/positioning/relative",
+				"Stacking contexts and z-index": "api/en/csslayouts/positioning/stacking",
+				"Sticky positioning": "api/en/csslayouts/positioning/sticky"
 			},
 
 			"Responsive Design": {
-                "Mobile First": "api/en/css/layouts/responsive/responsive",
-				"Media Queries": "api/en/css/layouts/responsive/responsive",
-				"Fluid Layouts": "api/en/css/layouts/responsive/responsive",
-				"Responsive Images": "api/en/css/layouts/responsive/responsive"
+                "Mobile First": "api/en/css/layouts/responsive/mobile-first",
+				"Media Queries": "api/en/css/layouts/responsive/media-queries",
+				"Fluid Layouts": "api/en/css/layouts/responsive/fluid-layout",
+				"Responsive Images": "api/en/css/layouts/responsive/responsive-images"
 			}
 
 		},
@@ -119,16 +119,16 @@
 		"CSS at Scale": {
 
 			"Modular CSS": {
-                "Base styles: Laying the groundwork": "api/en/css/scale/modular/modular-css",
-				"A simple module": "api/en/css/scale/modular/modular-css",
-				"Modules composed into a larger structures": "api/en/css/scale/modular/modular-css",
-				"Utility Classes": "api/en/css/scale/modular/modular-css",
-				"CSS methodologies": "api/en/css/scale/modular/modular-css"
+                "Base styles: Laying the groundwork": "api/en/css/scale/modular/base-styles",
+				"A simple module": "api/en/css/scale/modular/simple-module",
+				"Modules composed into a larger structures": "api/en/css/scale/modular/structure",
+				"Utility Classes": "api/en/css/scale/modular/utility-classes",
+				"CSS methodologies": "api/en/css/scale/modular/methodologies"
 			},
 
 			"Pattern Libraries": {
-                "Introduction to KSS": "api/en/css/scale/libraries/pattern-libraries",
-				"Shifting the way you build CSS": "api/en/css/scale/libraries/pattern-libraries"
+                "Introduction to KSS": "api/en/css/scale/libraries/kss",
+				"Shifting the way you build CSS": "api/en/css/scale/libraries/shifting-the-way-you-build-css"
 			}
 
 		},
@@ -136,45 +136,45 @@
 		"Advanced Topics": {
 
 			"Background Shadow and Blend Modes": {
-                "Gradients": "api/en/css/advanced/blendmodes/blend-modes",
-				"Shadows": "api/en/css/advanced/blendmodes/blend-modes",
+                "Gradients": "api/en/css/advanced/blendmodes/gradients",
+				"Shadows": "api/en/css/advanced/blendmodes/shadows",
 				"Blend modes": "api/en/css/advanced/blendmodes/blend-modes"
 			},
 
 			"Contrast, Color and Spacing": {
-                "Contrast is King": "api/en/css/advanced/ccs/ccs",
-				"Color": "api/en/css/advanced/ccs/ccs",
-				"Spacing": "api/en/css/advanced/ccs/ccs"
+                "Contrast is King": "api/en/css/advanced/ccs/contrast",
+				"Color": "api/en/css/advanced/ccs/color",
+				"Spacing": "api/en/css/advanced/ccs/spacing"
 			},
 
 			"Typography": {
-                "Web fonts": "api/en/css/advanced/typography/typography",
-				"Google fonts": "api/en/css/advanced/typography/typography",
-				"How @font-face works": "api/en/css/advanced/typography/typography",
-				"Adjusting space for readability": "api/en/css/advanced/typography/typography",
-				"The dreaded FOUT and FOIT": "api/en/css/advanced/typography/typography"
+                "Web fonts": "api/en/css/advanced/typography/web-fonts",
+				"Google fonts": "api/en/css/advanced/typography/google-fonts",
+				"How @font-face works": "api/en/css/advanced/typography/how-font-face-works",
+				"Adjusting space for readability": "api/en/css/advanced/typography/readbility",
+				"The dreaded FOUT and FOIT": "api/en/css/advanced/typography/foit-fout"
 			},
 
 			"Transitions": {
-                "From here to there": "api/en/css/advanced/transitions/transitioning",
-				"Timing functions": "api/en/css/advanced/transitions/transitioning",
-				"Non-Animatable properties": "api/en/css/advanced/transitions/transitioning",
+                "From here to there": "api/en/css/advanced/transitions/here-to-there",
+				"Timing functions": "api/en/css/advanced/transitions/timing-functions",
+				"Non-Animatable properties": "api/en/css/advanced/transitions/non-animatable",
 				"Transitioning to auto height": "api/en/css/advanced/transitions/transitioning"
 			},
 
 			"Transforms": {
-                "Rotate, translate, scale and skew": "api/en/css/advanced/transforms/transforms",
-				"Transforms in motion": "api/en/css/advanced/transforms/transforms",
-				"Animation Performance": "api/en/css/advanced/transforms/transforms",
-				"Three-dimensional (3D) transforms": "api/en/css/advanced/transforms/transforms"
+                "Rotate, translate, scale and skew": "api/en/css/advanced/transforms/rtss",
+				"Transforms in motion": "api/en/css/advanced/transforms/transforms-in-motion",
+				"Animation Performance": "api/en/css/advanced/transforms/animation-performance",
+				"Three-dimensional (3D) transforms": "api/en/css/advanced/transforms/three-dimensional"
 			},
 
 			"Animations": {
-                "Keyframes": "api/en/css/advanced/animations/animations",
-				"Animating 3D transforms": "api/en/css/advanced/animations/animations",
-				"Animation delay and fill mode": "api/en/css/advanced/animations/animations",
-				"Conveying meaning through Animation": "api/en/css/advanced/animations/animations",
-				"final piece of Advice": "api/en/css/advanced/animations/animations"
+                "Keyframes": "api/en/css/advanced/animations/keyframes",
+				"Animating 3D transforms": "api/en/css/advanced/animations/animating-3d-transforms",
+				"Animation delay and fill mode": "api/en/css/advanced/animations/delay-fill-mode",
+				"Conveying meaning through Animation": "api/en/css/advanced/animations/conveying",
+				"final piece of Advice": "api/en/css/advanced/animations/advice"
 			}
 
 		}
