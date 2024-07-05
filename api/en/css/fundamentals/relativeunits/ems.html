@@ -7,23 +7,291 @@
 		<link type="text/css" rel="stylesheet" href="page.css" />
 	</head>
 	<body>
-		<h1>Title here</h1>
+		<h1>Ems and rems</h1>
         <br>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-            Dolor explicabo distinctio, nobis odit quia consectetur ea maiores doloremque! 
-            Expedita aperiam, id neque quam et accusantium. Quas voluptatum eum cum ipsa!
+            Ems, the most common relative length unit, are a measure used in typography, referring 
+            to a specified font size. In CSS, 1 em means the font size of the current element;
+ its exact value varies depending on the element you’re applying it to. Figure 2.1 shows
+ a div with 1 em of padding.
+        </p>
+        <code>
+            image to be updated git
+        </code>
+        <p>
+            The code to produce this is shown in the next listing. The ruleset specifies a font size
+            of 16 px, which becomes the element’s local definition for 1 em. Then the code uses
+            ems to specify the padding of the element. Add this to a new stylesheet, and put some
+            text in a <xmp><div class="padded"></xmp> to see it in your browser.
+        </p>
+        <code>
+            image to be updated git
+        </code>
+        <p>
+            This padding has a specified value of 1em. This is multiplied by the font size, produc
+            ing a rendered padding of 16 px. This is important: Values declared using relative
+             units are evaluated by the browser to an absolute value, called the <i>computed value.</i>
         </p>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Porro tenetur accusantium, vel excepturi error illo sunt 
-            labore suscipit deserunt eum in dignissimos voluptate ipsa 
-            molestias itaque veniam amet, eius magni.
+            In this example, editing the padding to 2 em would produce a computed value of
+            32 px. If another selector targets the same element and overrides it with a different
+            font size, it’ll change the local meaning of em, and the computed padding will change
+            to reflect that.
         </p>
+        <p>
+            Using ems can be convenient when setting properties like padding, height, width,
+            or border-radius because these will scale evenly with the element if it inherits differ
+            ent font sizes, or if the user changes the font settings.
+        </p>
+        <p>
+            Figure 2.2 shows two differently sized boxes. The font size, padding, and border
+            radius in each is not the same.
+        </p>
+        <code>
+            image to be updated git
+        </code>
+        <p>
+            You can define the styles for these boxes by specifying the padding and border radius
+            using ems. By giving each a padding and border radius of 1 em, you can specify a
+            different font size for each element, and the other properties will scale along with
+            the font.
+        </p>
+        <p>
+            In your HTML, create two boxes as shown next. Add the box-small and box-large
+            classes to each, respectively, as size modifiers.
+        </p>
+        <code>
+            image to be updated git
+        </code>
+        <p>
+            Now, add the styles shown next to your stylesheet. This defines a box using ems. It also
+            defines small and large modifiers, each specifying a different font size.
+        </p>
+        <code>
+            image to be updated git
+        </code>
+        <p>
+            This is a powerful feature of ems. You can define the size of an element and then scale
+            the entire thing up or down with a single declaration that changes the font size. You’ll
+            build another example of this in a bit, but first, let’s talk about ems and font sizes.
+        </p>
+        <h3> Using ems to define font-size</h3>
+        <p>
+            When it comes to the font-size property, ems behave a little differently. As I said,
+            ems are defined by the current element’s font size. But, if you declare font size:
+            1.2em, what does that mean? A font size can’t equal 1.2 times itself. Instead, font-size
+            ems are derived from the inherited font size.
+        </p>
+        <p>
+            For a basic example, see figure 2.3. This shows two bits of text, each at a different
+            font size. You’ll define these using ems in listing 2.4.
+        </p>
+        <code>
+            image to be updated git
+        </code>
+        <p>
+            Change your page to match the following listing. The first line of text is inside the
+            <xmp><body></xmp> tag, so it’ll render at the body’s font size. The second part, the slogan, inherits
+            that font size.
+        </p>
+        <code>
+            image to be updated git
+        </code>
+        <p>
+            The CSS in the next listing specifies the body’s font size. I’ve used pixels here for clar
+            ity. Next, you’ll use ems to scale up the size of the slogan.
+        </p>
+        <code>
+            image to be updated git
+        </code>
+        <p>
+            The slogan’s specified font size is 1.2 em. To determine the calculated pixel value,
+            you’ll need to refer to the inherited font size of 16 px: 16 times 1.2 equals 19.2, so the
+            calculated font size is 19.2 px.
+        </p>
+        <p>
+            <code>
+            TIP If you know the pixel-based font size you’d like, but want to specify the
+            declaration in ems, here’s a simple formula: divide the desired pixel size by
+            the parent (inherited) pixel size. For example, if you want a 10 px font and
+            your element is inheriting a 12 px font, 10 / 12 = 0.8333 em. If you want a 16
+            px font and the parent font is 12 px, 16 / 12 = 1.3333 em. We’ll do this calcu
+           lation several times throughout this chapter.
+            </code>
+        </p>
+        <p>
+            It’s helpful to know that, for most browsers, the default font size is 16 px. Technically,
+            it’s the keyword value medium that calculates to 16 px.
+        </p>
+        <h3>EMS FOR FONT SIZE TOGETHER WITH EMS FOR OTHER PROPERTIES</h3>
+        <p>
+            You’ve now defined ems for font-size (based on an inherited font size). And, you’ve
+            defined ems for other properties like padding and border-radius (based on the cur
+            rent element’s font size). What makes ems tricky is when you use them for both font
+            size and any other properties on the same element. When you do this, the browser
+            must calculate the font size first, and then it uses that value to calculate the other val
+            ues. Both properties can have the same declared value, but they’ll have different com
+            puted values.
+        </p>
+        <p>
+            In the previous example, we calculated the font size to be 19.2 px (16 px inherited
+            font size times 1.2 em). Figure 2.4 shows the same slogan element, but with an added 
+            padding of 1.2 em and a gray background to make the padding size more apparent.
+            This padding is a bit larger than the font size, even though both have the same
+            declared value.
+        </p>
+        <code>
+            image to be updated git
+        </code>
+        <p>
+            What’s happening here is the paragraph inherits a font size of 16 px from the body,
+ producing a calculated font size of 19.2 px. This means that 19.2 px is now the local
+ value for an em, and that value is used to calculate the padding. The CSS for this is
+ shown next. Update your stylesheet to see this in your test page.
+        </p>
+        <code>
+            image to be updated git
+        </code>
+        <p>
+            In this example, padding has a specified value of 1.2 em. This multiplied by 19.2 px
+            (the current element’s font size) produces a calculated value of 23.04 px. Even
+            though font-size and padding have the same specified value, their calculated values
+            are different.
+        </p>
+        <h3>THE SHRINKING FONT PROBLEM</h3>
+        <p>
+            Ems can produce unexpected results when you use them to specify the font sizes of
+            multiple nested elements. To know the exact value for each element, you’ll need to
+            know its inherited font size, which, if defined on the parent element in ems, requires
+            you to know the parent element’s inherited size, and so on up the tree.
+        </p>
+        <p>
+            This becomes quickly apparent when you use ems for the font size of lists and then
+            nest lists several levels deep. Almost every web developer at some point in their career
+            loads their page to find something resembling figure 2.5. The text is shrinking! This is
+            exactly the sort of problem that leaves developers dreading the use of ems.
+        </p>
+        <code>
+            image to be updated git
+        </code>
+        <P>
+            Shrinking text occurs when you nest lists several levels deep and apply an em-based
+            font size to each level. Listings 2.7 and 2.8 provide an example of this by setting the
+            font size of unordered lists to .8 em. The selector targets every <xmp><ul></xmp> on the page; so
+            when these lists inherit their font size from other lists, the ems compound.
+        </P>
+        <code>
+            image to be updated git
+        </code>
+        <code>
+            image to be updated git
+        </code>
+        <p>
+            Each list has a font size 0.8 times that of its parent. This means the first list has a font
+            size of 12.8 px, but the next one down is 10.24 px (12.8 px × 0.8), and the third level is
+            8.192 px, and so on. Similarly, if you specified a size larger than 1 em, the text would
+            continually grow instead. What we want is to specify the font at the top level, then
+            maintain the same font size all the way down, as in figure 2.6.
+        </p>
+        <code>
+            image to be updated git
+        </code>
+        <p>
+            One way you can accomplish this is with the code in listing 2.9. This sets the font size
+            of the first list to .8 em as before (listing 2.7). The second selector in the listing then
+            targets all unordered lists within an unordered list—all of them except the top level.
+            The nested lists now have a font size equal to their parents, as shown in figure 2.6.
+        </p>
+        <code>
+            image to be updated git
+        </code>
+        <p>
+            This fixes the problem, though it’s not ideal; you’re setting a value and then immedi
+            ately overriding it with another rule. It would be nicer if you could avoid overriding
+             rules by inching up the specificity of the selectors.
+        </p>
+        <p>
+            By now, it should be clear that ems can get away from you if you’re not careful.
+            They’re nice for padding, margins, and element sizing, but when it comes to font size,
+            they can get complicated. Thankfully, there is a better option—rems.
+        </p>
+        <h3>Using rems for font-size</h3>
+        <p>
+            When the browser parses an HTML document, it creates a representation in memory
+            of all the elements on the page. This representation is called the DOM (Document
+            Object Model). It’s a tree structure, where each element is represented by a node. The
+            <xmp><html></xmp> element is the top-level (or root) node. Beneath it are its child nodes, <xmp><head></xmp>
+            and <xmp><body></xmp>. And beneath those are their children, then their children, and so on.
+        </p>
+        <p>
+            The root node is the ancestor of all other elements in the document. It has a special 
+            pseudo-class selector (:root) that you can use to target it. This is equivalent to 
+            using the type selector html with the specificity of a class rather than a tag.
+        </p>
+        <p>
+            Rem is short for root em. Instead of being relative to the current element, rems are
+ relative to the root element. No matter where you apply it in the document, 1.2 rem
+ has the same computed value: 1.2 times the font size of the root element. The following 
+ listing establishes the root font size and then uses rems to define the font size for
+ unordered lists relative to that.
+        </p>
+        <code>
+            image to be updated git
+        </code>
+        <p>
+            In this example, the root font size is the browser’s default of 16 px (an em on the root
+            element is relative to the browser’s default). Unordered lists have a specified font size
+            of .8 rem, which calculates to 12.8 px. Because this is relative to the root, the font
+            size will remain constant, even if you nest lists.
+        </p>
+        <p>
+            <code>
+                <h3>Accessibility: use relative units for font size</h3>
+                <p>
+                    Some browsers provide two ways for the user to customize the size of text: zoom
+                    and a default font size. By pressing Ctrl-plus (+) or Ctrl-minus (–), the user can zoom
+                    the page up or down. This visually scales all fonts and images and generally makes
+                    everything on the page larger or smaller. In some browsers, this change is only
+                    applied to the current tab and is temporary, meaning it doesn’t get carried over to
+                    new tabs.
+                    Setting a default font size is a bit different. Not only is it harder to find where to set
+                    this (usually in the browser's settings page), but changes at this level remain permanent, 
+                    until the user returns and changes the value again. The catch is that this setting
+                    does not resize fonts defined using pixels or other absolute units. Because a default
+                    font size is vital to some users, particularly those who are vision-impaired, you should
+                    always specify font sizes with relative units or percentages.
+                </p>
+            </code>
+        </p>
+        <p>
+            Rems simplify a lot of the complexities involved with ems. In fact, they offer a good
+            middle ground between pixels and ems by providing the benefits of relative units, but
+            are easier to work with. Does this mean you should use rems everywhere and abandon
+            the other options? No.
+        </p>
+        <p>
+            In CSS, again, the answer is often, “it depends.” Rems are but one tool in your tool
+ bag. An important part of mastering CSS is learning when to use which tool. My
+ default is to use rems for font sizes, pixels for borders, and ems for most other measures, 
+ especially paddings, margins, and border radius (though I favor the use of percentages 
+ for container widths when necessary).
+        </p>
+        <p>
+            This way, font sizes are predictable, but you’ll still get the power of ems scaling
+ your padding and margins, should other factors alter the font size of an element. Pixels 
+ make sense for borders, particularly when you want a nice fine line. These are my
+ go-to units for the various properties, but again, they’re tools, and in some circumstances, 
+ a different tool does the job better.
+        </p>
+        <code>
+            TIP When in doubt, use rems for font size, pixels for borders, and ems for
+            most other properties.
+        </code>
+
 
 		<h2>Next Steps</h2>
 		<p>
-			teaser for next topic [link:#api/en/css/xxxx/xxxx/xxxx topicname].
+			We should immediately [link:#api/en/css/fundamentals/relativeunits/stopthinkinginpixels Stop thinking in pixels].
 		</p>
 	</body>
 </html>

@@ -7,23 +7,206 @@
 		<link type="text/css" rel="stylesheet" href="page.css" />
 	</head>
 	<body>
-		<h1>Title here</h1>
+		<h1>Custom properties (aka CSS variables)</h1>
         <br>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-            Dolor explicabo distinctio, nobis odit quia consectetur ea maiores doloremque! 
-            Expedita aperiam, id neque quam et accusantium. Quas voluptatum eum cum ipsa!
+            In 2015, a long-awaited CSS specification titled Custom Properties for Cascading 
+			Variables was published as a Candidate Recommendation. This specification introduced
+			the concept of variables to the language, which enabled a new level of dynamic,
+			context-based styles. You can declare a variable and assign it a value; then you can
+			reference this value throughout your stylesheet. You can use this to reduce 
+			repetition in your stylesheet, as well as some other beneficial applications as you’ll see
+			shortly.
         </p>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Porro tenetur accusantium, vel excepturi error illo sunt 
-            labore suscipit deserunt eum in dignissimos voluptate ipsa 
-            molestias itaque veniam amet, eius magni.
+			At the time of writing, support for custom properties has rolled out in all major
+			browsers except IE. For up-to-date support information on lesser-known browsers,
+			check “Can I Use” at http://caniuse.com/#feat=css-variables.
+			<code>
+				NOTE If you happen to use a CSS preprocessor that supports its own variables, 
+				such as Sass (syntactically awesome stylesheets) or Less, you may be
+				 tempted to disregard CSS variables. Don’t. The new CSS variables are different 
+				 in nature and are far more versatile than anything a preprocessor can
+				 accomplish. I tend to refer to them as “custom properties” rather than variables 
+				 to emphasize this distinction.
+			</code>
+			To define a custom property, you declare it much like any other CSS property. 
+			Listing 2.23 is an example of a variable declaration. Start a fresh page and stylesheet, 
+			and add this CSS.
+			<code>
+				goes here - git update
+			</code>
+			This listing defines a variable named --main-font, and sets its value to a set of common 
+			sans-serif fonts. The name must begin with two hyphens (--) to distinguish it 
+			from CSS properties, followed by whatever name you’d like to use.
         </p>
+		<p>
+			Variables must be declared inside a declaration block. I’ve used the :root selector
+ here, which sets the variable for the whole page—I’ll explain this shortly.
+		</p>
+		<p>
+			By itself, this variable declaration doesn’t do anything until we use it. Let’s apply it
+ to a paragraph to produce a result like that in figure 2.13.
+		</p>
+		<code>
+			goes here - git update
+		</code>
+		<p>
+			A function called var() allows the use of variables. You’ll use this function to 
+			reference the --main-font variable just defined. Add the ruleset shown in the following
+			listing to put the variable to use.
+		</p>
+		<p>
+			Custom properties let you define a value in one place, as a “single source of truth,”
+			and reuse that value throughout the stylesheet. This is particularly useful for recurring
+			values like colors. The next listing adds a brand-color custom property. You can use
+			this variable dozens of times throughout your stylesheet, but if you want to change it,
+			you only have to edit it in one place.
+		</p>
+		<code>
+			goes here - git update
+		</code>
+		<p>
+			The var() function accepts a second parameter, which specifies a fallback value. If the
+			variable specified in the first parameter is not defined, then the second value is used
+			instead.
+		</p>
+		<code>
+			goes here - git update
+		</code>
+		<p>
+			This listing specifies fallback values in two different declarations. In the first, --main-font 
+			is defined as Helvetica, Arial, sans-serif, so this value is used. In the second,--secondary-color 
+			is an undefined variable, so the fallback value blue is used.
+		</p>
+		<code>
+			NOTE If a var() function evaluates to an invalid value, the property will be
+			set to its initial value. For example, if the variable in padding: var(--brand-color) 
+			evaluates to a color, it would be an invalid padding value. In that
+			case, the padding would be set to 0 instead.
+		</code>
+		<h3> Changing custom properties dynamically</h3>
+		<p>
+			In the examples so far, custom properties are merely a nice convenience; they can save
+			you from a lot of repetition in your code. But what makes them particularly interest
+		   ing is that the declarations of custom properties cascade and inherit: You can define
+			the same variable inside multiple selectors, and the variable will have a different value
+			for various parts of the page.
+		</p>
+		<p>
+			You can define a variable as black, for example, and then redefine it as white inside
+			a particular container. Then, any styles based on that variable will dynamically resolve
+			to black if they are outside the container and to white if inside. Let’s use this to
+			achieve a result like that shown in figure 2.14.
+		</p>
+		<p>
+			This panel is similar to the one you saw earlier (figure 2.7). The HTML for this is
+			shown in listing 2.27. It has two instances of the panel: one inside the body and one
+			inside a dark section. Update your HTML to match this.
+		</p>
+		<code>
+			insert code here - git update
+		</code>
+		<code>
+			insert code here - git update
+		</code>
+		<p>
+			Let’s redefine the panel to use variables for text and background color. Add the next
+			listing to your stylesheet. This sets the background color to white and the text to black.
+			I’ll explain how this works before you add styles for the dark variant.		   
+		</p>
+		<code>
+			insert code here - git update
+		</code>
+		<p>
+			Again, you’ve defined the variables inside a ruleset with the :root selector. This is 
+			significant because it means these values are set for everything in the root element (the
+			 entire page). When a descendant element of the root uses the variables, these are
+			 the values they’ll resolve to.
+		</p>
+		<p>
+			You have two panels, but they still look the same. Now, let’s define the variables
+			again, but this time with a different selector. The next listing provides styles for the
+			dark container. It sets a dark gray background on the container, as well as a little 
+			padding and margin. It also redefines both variables. Add this to your stylesheet.
+		</p>
+		<code>
+			insert code here - git update
+		</code>
+		<p>
+			Reload the page, and the second panel will have a dark background and white text.
+			This is because when the panel uses these variables, they’ll resolve to the values
+			defined on the dark container, rather than on the root. Notice you didn’t have to
+			restyle the panel, or apply any additional classes.		   
+		</p>
+		<p>
+			In this example, you’ve defined custom properties twice: first on the root (where--main-color is black), 
+			and then on the dark container (where --main-color is
+			white). The custom properties behave as a sort of scoped variable because the values
+			are inherited by descendant elements. Inside the dark container, --main-color is
+			white; elsewhere on the page, it’s black.
+		</p>
+		<h3>Changing custom properties with JavaScript</h3>
+		<p>
+			Custom properties can also be accessed and manipulated live in the browser using
+			JavaScript. Because this isn’t a book on JavaScript, I’ll show you enough to get
+			acquainted with the concept. I’ll leave it to you to integrate this into your JavaScript
+			projects.
+		</p>
+		<p>
+			The following listing shows how to access a property on an element. It adds a script
+			to the page, which logs the value of the root element’s --main-bg property.
+		</p>
+		<p>
+			<code>
+				insert here
+			</code>
+			<p>
+				Because you can specify new values for custom properties on the fly, you can use Java
+				Script to set a new value for --main-bg dynamically. If you set it to a light blue, it’ll
+				 appear as shown in figure 2.15.
+			</p>
+			<code>
+				insert here
+			</code>
+			The code in the next listing sets a new value to --main-bg on the root element. Add
+			this at the end of the <xmp> script </xmp> tag.
+			<code>
+				insert here
+			</code>
+			If you run this script, any elements inheriting the --main-bg property will update to
+			use this new value. On your page, this changes the background of the first panel to light
+			blue. The second panel remains unchanged, as it’s still inheriting the property from
+			the dark container.
+		</p>
+		<p>
+			With this technique, you can use JavaScript to re-theme your site, live in the
+			browser. Or, you could highlight certain parts of the page or make any number of
+			other on-the-fly changes. Using only a few lines of JavaScript, you can make changes
+			that’ll affect a large number of elements on the page.
+		</p>
+		<h3>Experimenting with custom properties</h3>
+		<p>
+			Custom properties are a whole new area of CSS that developers are just beginning to
+			explore. Because browser support has been limited, it hasn’t yet seen much “prime
+			time” use. I’m sure that over time, you’ll see best practices and novel uses emerge.
+			This is something to keep your eye on. Experiment with custom properties and see
+			what you can come up with.
+		</p>
+		<p>
+			Be aware that any declaration using var() will be ignored by old browsers that
+			don’t understand it. Provide a fallback behavior for those browsers when possible:
+			<code>
+				color: black;
+				color: var(--main-color);
+			</code>
+			This will not always be possible, however, given the dynamic nature of custom proper
+			ties. Keep an eye on browser support at http://caniuse.com.
+		</p>
 
 		<h2>Next Steps</h2>
 		<p>
-			teaser for next topic [link:#api/en/css/xxxx/xxxx/xxxx topicname].
+			Post Relative Units Let's look into [link:#api/en/css/fundamentals/boxmodel/boxmodel Box Model].
 		</p>
 	</body>
 </html>

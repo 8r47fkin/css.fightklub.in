@@ -7,23 +7,80 @@
 		<link type="text/css" rel="stylesheet" href="page.css" />
 	</head>
 	<body>
-		<h1>Title here</h1>
+		<h1> Unitless numbers and line-height</h1>
         <br>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-            Dolor explicabo distinctio, nobis odit quia consectetur ea maiores doloremque! 
-            Expedita aperiam, id neque quam et accusantium. Quas voluptatum eum cum ipsa!
+            Some properties allow for unitless values (that is, a number with no specified unit).
+			Properties that support this include line-height, z-index, and font-weight (700 is
+			equivalent to bold; 400 is equivalent to normal, and so on). You can also use the unitless value 
+			0 anywhere a length unit (such as px, em, or rem) is required because, in
+			these cases, the unit does not matter—0 px equals 0% equals 0 em.
         </p>
+		<code>
+			WARNING A unitless 0 can only be used for length values and percentages,
+			such as in paddings, borders, and widths. It can’t be used for angular values,
+			such as degrees or time-based values like seconds.
+		</code>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Porro tenetur accusantium, vel excepturi error illo sunt 
-            labore suscipit deserunt eum in dignissimos voluptate ipsa 
-            molestias itaque veniam amet, eius magni.
+            The line-height property is unusual in that it accepts both units and unitless values.
+			You should typically use unitless numbers because they’re inherited differently. Let’s
+			put text into the page and see how this behaves. Add the code in the following listing
+			to your stylesheet.
         </p>
+		<code>
+			git update - insert here
+		</code>
+		<p>
+			You’ll specify a line height for the body element and allow it to be inherited by the rest
+			of the document. This will work as expected, no matter what you do to the font sizes
+			in the page (figure 2.11).
+		</p>
+		<code>
+			git update - insert here
+		</code>
+		<p>
+			Add listing 2.21 to your stylesheet for these styles. The paragraph inherits a line height
+			of 1.2. Because the font size is 32 px (2 em × 16 px, the browser’s default), the line
+			height is calculated locally to 38.4 px (32 px × 1.2). This will leave an appropriate
+			amount of space between lines of text.
+		</p>
+		<code>
+			git update - insert here
+		</code>
+		<p>
+			If instead you specify the line height using a unit, you may encounter unexpected
+			results, like that shown in figure 2.12. The lines of text overlap one another. Listing 2.22
+			shows the CSS that generated the overlap.
+		</p>
+		<code>
+			git update - insert here
+		</code>
+		<code>
+			git update - insert here
+		</code>
+		<p>
+			These results are due to a peculiar quirk of inheritance: when an element has a value
+			defined using a length (px, em, rem, and so forth), its computed value is inherited by
+			child elements. When units such as ems are specified for a line height, their value is
+			calculated, and that calculated value is passed down to any inheriting children. With
+			the line-height property, this can cause unexpected results if the child element has a
+			different font size, like the overlapping text.
+			<code>
+				length—The formal name for a CSS value that denotes a distance measurement. 
+				It’s a number followed by a unit, such as 5 px. Length comes in two
+				 flavors: absolute and relative. Percentages are similar to lengths, but strictly
+				 speaking, they’re not considered lengths.
+			</code>
+			When you use a unitless number, that declared value is inherited, meaning its computed 
+			value is recalculated for each inheriting child element. This will almost always 
+			be the result you want. Using a unitless number lets you set the line height on the 
+			body and then forget about it for the rest of the page, unless there are particular 
+			places where you want to make an exception.
+		</p>
 
 		<h2>Next Steps</h2>
 		<p>
-			teaser for next topic [link:#api/en/css/xxxx/xxxx/xxxx topicname].
+			Time to customize properties through [link:#api/en/css/fundamentals/relativeunits/customproperties custom properties].
 		</p>
 	</body>
 </html>

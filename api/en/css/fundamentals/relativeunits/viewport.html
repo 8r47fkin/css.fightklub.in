@@ -7,23 +7,153 @@
 		<link type="text/css" rel="stylesheet" href="page.css" />
 	</head>
 	<body>
-		<h1>Title here</h1>
+		<h1>Viewport-relative units</h1>
         <br>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-            Dolor explicabo distinctio, nobis odit quia consectetur ea maiores doloremque! 
-            Expedita aperiam, id neque quam et accusantium. Quas voluptatum eum cum ipsa!
+            You’ve learned that ems and rems are defined relative to font-size, but these aren’t
+			the only type of relative units. There are also viewport-relative units for defining lengths
+			relative to the browser’s viewport.
         </p>
+		<code>
+			viewport—The framed area in the browser window where the web page is visible. 
+			This excludes the browser’s address bar, toolbars, and status bar, if present.
+		</code>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Porro tenetur accusantium, vel excepturi error illo sunt 
-            labore suscipit deserunt eum in dignissimos voluptate ipsa 
-            molestias itaque veniam amet, eius magni.
+			If you’re not familiar with viewport-relative units, here is a brief explanation.
+			<ul>
+				<li> vh—1/100th of the viewport height </li>
+				<li> vw—1/100th of the viewport width</li>
+				<li> vmin—1/100th of the smaller dimension, height or width (IE9 supports vm instead of vmin)</li>
+				<li> vmax—1/100th of the larger dimension, height or width (not supported in IE or, at the time of writing, Edge)</li>
+			</ul>
+			For example, 50 vw is equal to half the width of the viewport, and 25 vh equals 25% of
+			the viewport’s height. vmin is based on which of the two (height or width) is smaller.
+			This is helpful for ensuring that an element will fit on the screen regardless of its orientation: 
+			If the screen is landscape, it’ll be based on the height; if portrait, it’s based
+			on the width.
         </p>
+		<p>
+			Figure 2.10 shows a square element as it appears in several viewports with different
+			screen sizes. It’s defined with both a height and a width of 90 vmin, which equals 90%
+			of the smaller of the two dimensions—90% of the height on landscape screens, or
+			90% of the width on portrait.
+		</p>
+		<p>
+			Listing 2.18 shows the styles for this element. It produces a large square that always
+			fits in the viewport no matter how the browser is sized. You can add a <xmp<div class=
+			"square">></xmp> to your page to see this.
+		</p>
+		<code>
+			git update - insert here
+		</code>
+		<code>
+			git update - insert here
+		</code>
+		<p>
+			The viewport-relative lengths are great for things like making a large hero image fill
+			the screen. Your image can be inside a long container, but setting the image height to
+			100 vh, makes it exactly the height of the viewport.
+		</p>
+		<code>
+			NOTE Viewport-relative units are a newer feature for most browsers, so there
+			are a few odd bugs when you use them in more exotic combinations with
+			other styles. See “Known Issues” at http://caniuse.com/#feat=viewport-units
+			for a list.
+		</code>
+		<p>
+			<h3>CSS3</h3>
+			<p>
+				Several of the unit types in this chapter weren’t in earlier versions of CSS (rems and
+				viewport-relative units, in particular). They were added amid a series of changes to
+				the language, which is often called CSS3.
+			</p>
+			<p>
+				In the late 1990s and early 2000s, after initial work on the CSS specification, little
+				changed for a long time. The W3C (World Wide Web Consortium) published the CSS
+				2 specification in May 1998. Shortly thereafter, work began on version 2.1 to correct
+				issues and bugs in version 2. Work on CSS 2.1 continued for many years, with few
+				significant additions to the language. It was not finalized as a Proposed 
+				Recommendation until April 2011. By this point, browsers had already implemented most of the
+				CSS 2.1 changes, and were well on their way to adding newer features under the
+				moniker CSS3.			   
+			</p>
+			<p>
+				The “3” is an informal version number; there’s no CSS3 specification. Instead, the
+				specification was broken up into individual modules, each independently versioned.
+				The specification for backgrounds and borders is now separate from the one for box
+				models, and from the one for cascading and inheritance. This allows the W3C to
+				make new revisions to one area of CSS without unnecessarily updating areas that
+				are not changing. Many of these specifications remain at version 3 (now called level
+				3), but some, such as the selectors specification, are at level 4 and others, such as
+				a flexbox, are at level 1.
+			</p>
+			<p>
+				As these changes were introduced, we saw an explosion of new features rolling out
+				in browsers from 2009 through 2013. Notable additions at this time included rems
+				and viewport-relative units, as well as new selectors, media queries, web fonts,
+				rounded borders, animations, transitions, transformations, and different ways to
+				specify colors. And, new features are steadily emerging each year.
+			</p>
+			<p>
+				This means we’re no longer working with one particular version of CSS. It’s a living
+				standard. Each browser is continually adding support for new features. Developers
+				work with those changes and adapt to them. There won’t be a CSS4, except perhaps
+				as a more generic marketing term. Although this book covers CSS3 features, I don’t
+				necessarily call them out at as such because, as far as the web is concerned, it’s
+				all CSS.
+			</p>
+		</p>
+		<h3>Using vw for font size</h3>
+		<p>
+			One application for viewport-relative units that may not be immediately obvious is
+			font size. In fact, I find this use more practical than applying vh and vw to element
+			heights or widths.
+		</p>
+		<p>
+			Consider what would happen if you applied font-size: 2vw to an element. On a
+			desktop monitor at 1,200 px, this evaluates to 24 px (2% of 1,200). On a tablet with a
+			screen width of 768 px, it evaluates to about 15 px (2% of 768). And, the nice thing is,
+			the element scales smoothly between the two sizes. This means there’re no sudden
+			breakpoint changes; it transitions incrementally as the viewport size changes.
+		</p>
+		<p>
+			Unfortunately, 24 px is a bit too large on a big screen. And worse, it scales all the
+			way down to 7.5 px on an iPhone 6. What would be nice is this scaling effect, but with
+			the extremes a little less severe. You can achieve this with CSS’s calc() function.
+		</p>
+		<h3>Using calc() for font size</h3>
+		<p>
+			The calc() function lets you do basic arithmetic with two or more values. This is 
+			particularly useful for combining values that are measured in different units. This 
+			function supports addition (+), subtraction (-), multiplication (*) and division (/). 
+			The addition and subtraction operators must be surrounded by whitespace, so I suggest
+			getting in the habit of always adding a space before and after each operator; 
+			for example, calc(1em + 10px).
+		</p>
+		<p>
+			You’ll use calc() in the next listing to combine ems with vw units. Remove the
+			previous base font size (and the related media queries) from your stylesheet. Add this
+			in its place.
+		</p>
+		<code>
+			git update here
+		</code>
+		<p>
+			Now, open the page and slowly resize your browser. You’ll see the font scale smoothly
+			as you do. The 0.5 em here operates as a sort of minimum font size, and the 1 vw adds
+			a responsive scalar. This’ll give you a base font size that scales from 11.75 px on an
+			iPhone 6 up to 20 px in a 1,200 px browser window. You can adjust these values to
+			your liking. 
+		</p>
+		<p>
+			You’ve now accomplished a large piece of your responsive strategy without a single
+			media query. Instead of three or four hard-coded breakpoints, everything on your
+			page will scale fluidly according to the viewport.
+		</p>
 
 		<h2>Next Steps</h2>
 		<p>
-			teaser for next topic [link:#api/en/css/xxxx/xxxx/xxxx topicname].
+		Lets go to [link:#api/en/css/fundamentals/relativeunits/unitless Unitless numbers and line-height].
 		</p>
 	</body>
 </html>

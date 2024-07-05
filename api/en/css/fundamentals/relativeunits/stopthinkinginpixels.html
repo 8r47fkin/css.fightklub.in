@@ -7,23 +7,212 @@
 		<link type="text/css" rel="stylesheet" href="page.css" />
 	</head>
 	<body>
-		<h1>Title here</h1>
+		<h1>Stop thinking in pixels</h1>
         <br>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-            Dolor explicabo distinctio, nobis odit quia consectetur ea maiores doloremque! 
-            Expedita aperiam, id neque quam et accusantium. Quas voluptatum eum cum ipsa!
+            One pattern, or rather, antipattern, that has been common for the past several years is
+			to reset the font size at the page’s root to .625 em or 62.5%.
         </p>
+		<code>
+			inset image - push through git
+		</code>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Porro tenetur accusantium, vel excepturi error illo sunt 
-            labore suscipit deserunt eum in dignissimos voluptate ipsa 
-            molestias itaque veniam amet, eius magni.
+			I don’t recommend this. This takes the browser’s default font size, 16 px, and scales it
+			down to 10 px. This practice simplifies the math: If your designer tells you to make the
+			font 14 px, you can easily divide by 10 in your head and type 1.4 rem, all while still
+			using relative units.
         </p>
+		<p>
+			Initially, this may be convenient, but there are two problems with this approach.
+			First, it forces you to write a lot of duplicate styles. Ten pixels is too small for most text,
+			so you’ll have to override it throughout the page. You’ll find yourself setting paragraphs 
+			to 1.4 rem and asides to 1.4 rem and nav links to 1.4 rem and so on. This introduces 
+			more places for error, more points of contact in your code when it needs to
+			change, and increases the size of your stylesheet.
+		</p>
+		<p>
+			The second problem is that when you do this, you’re still thinking in pixels. You
+			might type 1.4 rem into your code, but in your mind, you’re still thinking “14 pixels.”
+			On a responsive web, you should get comfortable with “fuzzy” values. It doesn’t matter
+			how many pixels 1.2 em evaluates to; all you need to know is that it’s a bit bigger than
+			the inherited font size. And, if it doesn’t look how you want it onscreen, change it.
+			This takes some trial and error, but in reality, so does working with pixels. (In chapter 13, 
+			we’ll look at additional concrete rules to refine this approach.)
+		</p>
+		<p>
+			When working with ems, it’s easy to get bogged down obsessing over exactly how
+			many pixels things will evaluate to, especially font sizes. You’ll drive yourself mad
+			dividing and multiplying em values as you go. Instead, I challenge you to get into the
+			habit of using ems first. If you’re accustomed to using pixels, using em values may take
+			practice, but it’s worth it.
+		</p>
+		<p>
+			This isn’t to say you’ll never have to work with pixels. If you’re working with a
+			designer, you’ll probably need to talk in some concrete pixel numbers, and that’s
+			okay. At the beginning of a project, you’ll need to establish a base font size (and often
+			a few common sizes for headings and footnotes). Absolute values are easier to use
+			when discussing the size of things.
+		</p>
+		<p>
+			Converting to rems will involve arithmetic, so keep a calculator handy. (I press
+			Command-Space on my Mac, and type the equation into Spotlight.) Putting a root
+			font size in place defines a rem. From that point on, working in pixels should be the
+			exception, not the norm.
+		</p>
+		<p>
+			I’ll continue to mention pixels throughout this chapter. This will help me reiterate 
+			why the relative units behave the way they do, as well as help you get accustomed to 
+			the calculation of ems. After this chapter, I’ll primarily discuss font sizes using relative units.
+		</p>
+		<h3>Setting a sane default font size</h3>
+		<p>
+			Let’s say you want your default font size to be 14 px. Instead of setting a 10 px default
+			then overriding it throughout the page, set that value at the root. The desired value
+			divided by the inherited value—in this case, the browser’s default—is 14/16, which
+			equals 0.875. 
+		</p>
+		<p>
+			Add the following listing to the top of a new stylesheet, as you’ll be building on it.
+			This sets the default font at the root <xmp>(<html>)</xmp>.
+		</p>
+		<code>
+			insert here - git update
+		</code>
+		<p>
+			Now your desired font size is applied to the whole page. You won’t need to specify it
+			elsewhere. You’ll only need to change it in places where the design deviates from this,
+			such as headings.
+		</p>
+		<p>
+			Let’s create the panel shown in figure 2.7. You’ll build this panel based on the 
+			14px font size, using relative measurements.
+		</p>
+		<code>
+			insert here - git update
+		</code>
+		<p>
+			The markup for this is shown here. Add this to your page.
+		</p>
+		<code>
+			insert here - git update
+		</code>
+		<p>
+			The next listing shows the styles. You’ll use ems for the padding and border radius, rem
+			for the font size of the heading, and px for the border. Add these to your stylesheet.		   
+		</p>
+		<code>
+			insert here - git update
+		</code>
+		<p>
+			This code puts a thin border around the panel and styles the heading. I opted for a
+			header that is smaller, but bold and all caps. (You can make this larger or a different
+			typeface if your design calls for it.)
+		</p>
+		<p>
+			The > in the second selector is a direct descendant combinator. It targets an h2 that’s a
+			child element of a .panel element. See appendix A for a complete reference of selectors 
+			and combinators.
+		</p>
+		<p>
+			In listing 2.13, I added a panel-body class to the main body of the panel for clarity,
+			but you’ll notice you didn’t need to use it in your CSS. Because this element already
+			inherits the root font size, it already appears how you want it to look.
+		</p>
+
+		<h3>Making the panel responsive</h3>
+		<p>
+			Let’s take this a bit further. You can use some media queries to change the base font size,
+			depending on the screen size. This’ll make the panel render at different sizes based
+			on the size of the user’s screen (shown in figure 2.8).
+			<code>
+				media query—An @media rule used to specify styles that will be applied only to
+				certain screen sizes or media types (for example, print or screen). This is a
+				key component of responsive design. See listing 2.15 for an example; I’ll
+				cover this in greater depth in chapter 8.
+			</code>
+			<code>
+				insert here - git update
+			</code>
+			To see this result, edit this portion of your stylesheet to match this listing.
+			<code>
+				insert here - git update
+			</code>
+			This first ruleset specifies a small default font size. This is the font size that we want
+			to apply on smaller screens. Then you used media queries to override that value
+			with incrementally larger font sizes on screens with a width of 800 px and 1,200 px
+			or more.
+		</p>
+		<p>
+			By applying these font sizes at the root on your page, you’ve responsively redefined
+			the meaning of em and rem throughout the entire page. This means that the panel is
+			now responsive, even though you made no changes to it directly. On a small screen, such
+			as a smartphone, the font will be rendered smaller (12 px); likewise, the padding and
+			border radius will be smaller to match. And, on larger screens more than 800 px and
+			1,200 px wide, the component scales up to a 14 px and 16 px font size, respectively.
+			Resize your browser window to watch these changes take place.
+		</p>
+		<p>
+			If you are disciplined enough to style your entire page in relative units like this, the
+			entire page will scale up and down based on the viewport size. This can be a huge part
+			of your responsive strategy. These two media queries near the top of your stylesheet
+			can eliminate the need for dozens of media queries throughout the rest of your CSS.
+			But it doesn’t work if you define your values in pixels. 
+		</p>
+		<p>
+			Similarly, if your boss or your client decides the fonts on the site you built are too
+			small or too large, you can change them globally by only touching one line of code.
+			The change will ripple throughout the rest of your page, effortlessly.
+		</p>
+		<h3> Resizing a single component</h3>
+		<p>
+			You can also use ems to scale an individual component on the page. Sometimes you
+			might need a larger version of the same part of your interface on certain parts of the
+			page. Let’s do this with our panel. You’ll add a large class to the panel: <xmp><div
+			class="panel large"> </xmp>.
+		</p>
+		<p>
+			Figure 2.9 shows both the normal and the large panel for comparison. The effect is
+			similar to the responsive panels, but both sizes can be used simultaneously on the
+			same page.
+		</p>
+		<code>
+			insert here - git update
+		</code>
+		<p>
+			Let’s make a small change to the way you defined the panel’s font sizes. You’ll still use
+			relative units, but you’ll adjust what they’re relative to. First, add the declaration font
+		   size: 1rem to the parent element of each panel. This means each panel will establish
+			a predictable font size for itself, no matter where it’s placed on the page. 
+		</p>
+		<p>
+			Second, redefine the heading’s font size using ems rather than rems to make it relative to 
+			the parent’s font size you just established at 1 rem. The code for this is next. 
+			Update your stylesheet to match.
+		</p>
+		<code>
+			insert here - git update
+		</code>
+		<p>
+			This change has no effect on the appearance of the panel, but now it sets you up to
+			make the larger version of the panel with a single line of CSS. All you have to do is
+			override the parent element’s 1 rem with another value. Because all the component’s
+			measurements are relative to this, overriding it will resize the entire panel. Add the
+			CSS in the next listing to your stylesheet to define a larger version.
+		</p>
+		<code>
+			insert here - git update
+		</code>
+		<p>
+			Now, you can use class="panel" for a normal panel and class="panel large" for
+			a larger one. Similarly, you could define a smaller version of the panel by setting a
+			smaller font size. If the panel were a more complicated component, with multiple font
+			sizes or paddings, it’d still only take this one declaration to resize it, as long as every
+			thing inside is defined using ems.
+		</p>
 
 		<h2>Next Steps</h2>
 		<p>
-			teaser for next topic [link:#api/en/css/xxxx/xxxx/xxxx topicname].
+			Lets view the [link:#api/en/css/fundamentals/relativeunits/viewport viewport].
 		</p>
 	</body>
 </html>
