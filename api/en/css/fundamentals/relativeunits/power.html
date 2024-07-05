@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<base href="../../../../../" />
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>Power of Relative Units</h1>
+        <br>
+        <p>
+            CSS brings a late-binding of styles to the web page: The content and its styles aren’t
+ pulled together until after the authoring of both is complete. This adds a level of
+ complexity to the design process that doesn’t exist in other types of graphic design,
+ but it also provides more power—one stylesheet can be applied to hundreds, even
+ thousands, of pages. Furthermore, the final rendering of the page can be altered
+ directly by the user, who, for example, can change the default font size or resize the
+ browser window.
+        </p>
+        <p>
+            In early computer application development (as well as in traditional publishing),
+ developers (or publishers) knew the exact constraints of their medium. A particular
+ program window might be 400 px wide by 300 px tall, or a page could be 4 in. wide by
+ 6½ in. tall. Consequently, when developers set about laying out the application’s but
+tons and text, they knew exactly how big they could make those elements and exactly
+ how much space that would leave them to work with for other items on the screen. On
+ the web, this is not the case.
+        </p>
+        <h3>The struggle for pixel-perfect design</h3>
+        <p>
+            In the web environment, the user can have their browser window set to any number of
+            sizes, and the CSS has to apply to it. Furthermore, users can resize the page after it’s
+            opened, and the CSS needs to adjust to new constraints. This means that styles can’t
+            be applied when you create your page; the browser must calculate those when the
+            page is rendered onscreen.
+        </p>
+        <p>
+            This adds a layer of abstraction to CSS. We can’t style an element according to an
+            ideal context; we need to specify rules that’ll work in any context where that element
+            could be placed. With today’s web, your page will need to render on a 4-in. phone
+            screen as well as on a 30-in. monitor.
+        </p>
+        <p>
+            For a long time, designers mitigated this complexity by focusing on “pixel-perfect”
+            designs. They’d create a tightly defined container, often a centered column around
+            800 px wide. Then, within these constraints, they’d go about designing more or less
+            like their predecessors did with native applications or print publications.
+        </p>
+        <h3>The end of the pixel-perfect web</h3>
+        <p>
+            As technology improved and manufacturers introduced higher-resolution monitors,
+            the pixel-perfect approach slowly started to break down. In the early 2000s, there was
+            a lot of discussion on whether we developers could safely design for displays 1,024 px
+            wide instead of 800 px wide. Then, we’d have the same conversation all over again for
+            1,280 px. We had to make judgment calls. Was it better to make our site too wide
+            for older computers or too narrow for new ones?
+        </p>
+        <p>
+            When smartphones emerged, developers were forced to stop pretending everyone
+            could have the same experience on their sites. Whether we loved it or hated it, we had
+            to abandon columns of some known number of pixels, and begin thinking about
+            responsive design. We could no longer hide from the abstraction that comes with CSS.
+            We had to embrace it.
+        </p>
+        <code>
+            responsive—In CSS, this refers to styles that “respond” differently, based on
+            the size of the browser window. This entails intentional consideration for
+            mobile, tablet, or desktop screens of any size. We’ll take a good look at
+            responsive design in chapter 8, but in this chapter, I’ll lay some important
+            groundwork before we get there.
+        </code>
+        <p>
+            Added abstraction means additional complexity. If I give an element a width of 800
+            px, how will that look in a smaller window? How will a horizontal menu look if it
+            doesn’t all fit on one line? As you write your CSS, you need to be able to think simulta
+           neously in specifics, as well as in generalities. When you’ve multiple ways to solve a
+            particular problem, you’ll need to favor the solution that works more generally under
+            multiple and different circumstances.
+        </p>
+        <p>
+            Relative units are one of the tools CSS provides to work at this level of abstraction.
+            Instead of setting a font size at 14 px, you can set it to scale proportionally to the size
+            of the window. Or, you can set the size of everything on the page relative to the base
+            font size, and then resize the entire page with a single line of code. Let’s take a look at
+            what CSS provides to make this sort of approach possible.
+        </p>
+
+        <code>
+            Pixels, points and picas
+            CSS supports several absolute length units, the most common of which, and the
+            most basic, is the pixel (px). Less common absolute units are mm (millimeter), cm
+            (centimeter), in. (inch), pt (point—typographic term for 1/72nd of an inch), and pc
+            (pica—typographic term for 12 points). Any of these units can be translated directly
+            to another if you want to work out the math: 1 in. = 25.4 mm = 2.54 cm = 6 pc = 72
+            pt = 96 px. Therefore, 16 px is the same as 12 pt (16 / 96 × 72). Designers are often
+            more familiar with the use of points, where developers are more accustomed to pixels, 
+            so you may have to do some translation between the two when communicating
+            with a designer.
+
+            Pixel is a slightly misleading name—a CSS pixel does not strictly equate to a monitor’s 
+            pixel. This is notably the case on high-resolution (“retina”) displays. Although
+            the CSS measurements can be scaled a bit, depending on the browser, the operating
+            system, and the hardware, 96 px is usually in the ballpark of 1 physical inch
+            onscreen, though this can vary on certain devices or with a user’s resolution settings.
+        </code>
+
+
+		<h2>Next Steps</h2>
+		<p>
+			Post unleashing the powers lets do [link:#api/en/css/fundamentals/relativeunits/ems ems and rems].
+		</p>
+	</body>
+</html>
