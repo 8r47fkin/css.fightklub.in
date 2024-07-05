@@ -7,23 +7,248 @@
 		<link type="text/css" rel="stylesheet" href="page.css" />
 	</head>
 	<body>
-		<h1>Title here</h1>
+		<h1>Difficulties with element width</h1>
         <br>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-            Dolor explicabo distinctio, nobis odit quia consectetur ea maiores doloremque! 
-            Expedita aperiam, id neque quam et accusantium. Quas voluptatum eum cum ipsa!
+			In this chapter, you’ll build a simple page with a header at the top and two columns
+			beneath. By the end of the chapter, your page will look like the one shown in figure 3.1.
+			I’ve intentionally made the page design a bit “blocky,” so you can readily see the size and
+			position of all the elements.
         </p>
+		<code>
+			insert git code here
+		</code>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Porro tenetur accusantium, vel excepturi error illo sunt 
-            labore suscipit deserunt eum in dignissimos voluptate ipsa 
-            molestias itaque veniam amet, eius magni.
+            Start a new page and an empty stylesheet, and then link them. Add the markup shown
+ next to your page. Your page will have a header, as well as a main element and a side
+bar element that will make up the two columns on your page. A container wraps the
+ two columns.
         </p>
+		<code>
+			insert git code here
+		</code>
+		<p>
+			Let’s begin with some of the obvious styles. You’ll set the font for the page, then back
+			ground colors for the page and each of the main containers. This will help you see the
+			 position and size of each as you go. After you do this, your page will looks like the one
+			 shown in figure 3.2.
+		</p>
+		<p>
+			For some site designs, the background color of several containers might be transparent. 
+			When this is the case, it might be helpful to temporarily apply a background color
+			 to the container until you get it sized and positioned accordingly.
+		</p>
+		<p>
+			The styles for this are shown in listing 3.2. Currently, the sidebar is empty so, by
+			default, it has no height. You’ll add padding to give it some height. The other containers 
+			will need padding eventually, but we’ll come back to that. For now, add this code
+			to your stylesheet.
+		</p>
+		<code>
+			insert image here - git update space
+		</code>
+		<code>
+			NOTE IE has a bug where <xmp><main></xmp> elements are rendered inline by default,
+			rather than as blocks. We corrected that here by adding a display: block
+			declaration.
+		</code>
+		<p>
+			Next, let’s put your two columns in place. To begin, you’ll use a float-based layout.
+			You’ll float the main and the sidebar to the left and give them widths of 70% and
+			30%, respectively. Update your stylesheet to match the CSS shown here.
+		</p>
+		<code>
+			insert image here - git update space
+		</code>
+		<p>
+			You can see the result in figure 3.3, but it’s not quite what you wanted.
+		</p>
+		<code>
+			insert image here - git update space
+		</code>
+		<p>
+			Instead of the two columns sitting side by side, they line wrapped. Even though you
+			specified widths of 70% and 30%, the columns took up more than 100% of the avail
+		   able space. That’s because of the default behavior of the box model (figure 3.4).
+			When you set the width or height of an element, you’re specifying the width or height
+			of its content; any padding, border, and margins are then added to that width.
+		</p>
+		<p>
+			This behavior means that an element with a 300 px width, a 10 px padding, and a 1
+			px border has a rendered width of 322 px (width plus left and right padding plus left
+			and right border). This gets even more confusing when the units aren't all the same.
+		</p>
+
+		<code>
+			insert image here - git update space
+		</code>
+
+		<p>
+			In the example (listing 3.3), the sidebar has a width of 30% plus 1.5 em left and right
+ padding; the main container has only a width of 70%. This brings the total of the two
+ columns to 100% plus 3 ems. In order to fit, the containers have to wrap.
+		</p>
+		<h3>Avoiding magic numbers</h3>
+		<p>
+			The naive fix is to reduce the width of one of the columns (the sidebar, for example).
+		On my screen, a width of 26% for the sidebar works, but this is unreliable. The 26% is
+		known as a magic number. Instead of using a desired value, I found it by making hap
+		hazard changes to my styles until I got the result I wanted. 
+		</p>
+		<p>
+			For programming in general, magic numbers aren’t desirable. It’s often hard to
+		explain why a magic number works. If you don’t understand where the number comes
+		from, you won’t understand how it will behave under different circumstances. My
+		screen is 1440 px wide, so on smaller viewports, the sidebar will still line-wrap.
+		Although there’s a place for trial and error in CSS, typically that’s for choices that are
+		stylistic in nature and not for forcing things to fit into position.
+		</p>
+		<p>
+			One alternative to this magic number is to let the browser do the math. In this
+		case, the columns are 3 em too wide (due to padding), so you can use the calc()
+		function to reduce the width by exactly that much. A sidebar width of calc(30% - 3em)
+		gives you exactly what you need. But, there’s still a better way.
+		</p>
+		<h3>Adjusting the box model</h3>
+		<p>
+			Because of the problems you’ve just encountered, the default box model isn’t what
+		you’ll typically want to use. Instead, you’ll want your specified widths to include the
+		padding and borders. CSS allows you to adjust the box model behavior with its box
+		sizing property.
+		</p>
+		<p>
+			By default, box-sizing is set to the value of content-box. This means that any
+		height or width you specify only sets the size of the content box. You can assign a value
+		of border-box to the box sizing instead. That way, the height and width properties set
+		the combined size of the content, padding, and border, which is exactly what you want
+		in this example.
+		</p>
+		<p>
+			Figure 3.5 shows the box model with box sizing set to border-box. With this
+		model, padding doesn’t make an element wider; it makes the inner content narrower.
+		It also does the same for height.
+		</p>
+		<code>
+			insert image here - git update space
+		</code>
+		<p>
+			If you update these elements to use border box sizing, they’ll fit on the same line,
+			regardless of the left and right padding (figure 3.6).
+		</p>
+		<code>
+			insert image here - git update space
+		</code>
+		<p>
+			To adjust the box model for the two elements, main and sidebar, update your
+		stylesheet to match this listing.
+		</p>
+		<code>
+			insert image here - git update space
+		</code>
+		<p>
+			Using box-sizing: border-box, the two elements add up to an even 100% width.
+		Their widths of 70% and 30% are now inclusive of their padding, so they fit on the
+		same line.
+		</p>
+		<h3>Using universal border-box sizing</h3>
+		<p>
+			You have made box sizing more intuitive for these two elements, but you'll surely run
+			into other elements with the same problem. It would be nice to fix it once, universally
+			for all elements, so you won’t have to think about this adjustment again. You can do
+			this with the universal selector (*), which targets all elements on the page as the following 
+			listing shows. I’ve added selectors to target every pseudo-element on the page
+			as well. Put this code at the top of your stylesheet.
+		</p>
+		<code>
+			insert image here - git update space
+		</code>
+		<p>
+			After applying this to the page, height and width will always specify the actual height
+		and width of an element. Padding won’t change them. 
+		<code>
+			NOTE Adding this snippet near the beginning of your stylesheet has become
+			common practice.
+		</code>
+			If, however, you add third-party components with their own CSS to your page, you
+			may see some broken layouts for those components, especially if their CSS wasn’t
+			written with this fix in mind. Because the universal border-box fix targets every 
+			element in the component with the universal selector, correcting this can be problematic. 
+			You would need to target every element inside the component to revert to the
+			content-box sizing.
+		</p>
+		<p>
+			You can make this easier with a slightly modified version of the fix and inheritance.
+			Update this portion of your stylesheet to match the following listing.
+		</p>
+		<code>
+			insert image here - git update space
+		</code>
+		<p>
+			Box sizing isn’t normally an inherited property, but by using the inherit keyword,
+			you can force it to be. With the version shown here, you can convert a third-party 
+			component into a content-box when necessary by targeting its top-level container. Then
+			all elements inside the component will inherit the box sizing:
+		</p>
+		<code>
+			insert image here - git update space
+		</code>
+		<p>
+			Now, every element on your site will have a more predictable box model. I 
+			recommend that you add listing 3.6 to your CSS every time you start a new site; it’ll save you
+ 			a lot of trouble in the long run. It can be a little problematic in an existing stylesheet,
+ 			however, especially if you’ve already written lots of styles based on the default content
+			box model. If you do add this to an existing project, be sure to give it a thorough
+			review for any resulting bugs.
+		</p>
+		<code>
+			NOTE From this point on, every example in this book will assume that this
+			border-box fix is at the beginning of your stylesheet.
+		</code>
+		<h3>Adding a gutter between columns</h3>
+		<p>
+			It’s often more visually appealing to have a small gap (or gutter) between columns. You
+			can sometimes achieve this by adding padding to one column; but in some cases, this
+			approach doesn’t work. If both columns have a background color or border, as with
+			your example page, you’ll want the gutter to appear between the two elements’ 
+			borders (figure 3.7). Note the gray space between the two white backgrounds. You can
+			achieve this look in a handful of ways. Let's look at a couple of them, shown in listings 
+			3.7 and 3.8.
+		</p>
+		<code>
+			insert image here - git update space
+		</code>
+		<p>
+			First, you can add a margin to one of the columns and adjust the widths of your 
+			elements to account for the added space. Listing 3.7 shows how to subtract 1% from the
+ 			sidebar column width and move it to the margin. Update your CSS to match.
+		</p>
+		<code>
+			insert image here - git update space
+		</code>
+		<p>
+			This adds a gutter, but its width is based on the outer container’s width—the 
+			percentage is relative to the full width of the parent. What if you want to specify the gutter in
+ 			units other than a percentage? (I prefer an em-based gutter, which I find more consistent.) 
+			You can accomplish this with calc().
+		</p>
+		<p>
+			Instead of moving 1% from the width into the margin, you can move 1.5 em.
+			This listing shows how calc() makes this possible. Change your CSS again to match
+			this listing.
+		</p>
+		<code>
+			insert image here - git update space
+		</code>
+		<p>
+			Not only does this allow you to use ems rather than percentages for the gutter, but it
+			also has the benefit of being a little more explicit in code. When reviewing the code
+			later, it might not be apparent where a specific percentage comes from, but 30% - 1.5em
+			provides a clue that you’re doing something based on 30%.
+		</p>
 
 		<h2>Next Steps</h2>
 		<p>
-			teaser for next topic [link:#api/en/css/xxxx/xxxx/xxxx topicname].
+			After width it's [link:#api/en/css/fundamentals/boxmodel/difficultieswithelementheight height].
 		</p>
 	</body>
 </html>

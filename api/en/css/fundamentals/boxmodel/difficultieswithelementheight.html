@@ -7,19 +7,206 @@
 		<link type="text/css" rel="stylesheet" href="page.css" />
 	</head>
 	<body>
-		<h1>Title here</h1>
+		<h1>Difficulties with element height</h1>
         <br>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-            Dolor explicabo distinctio, nobis odit quia consectetur ea maiores doloremque! 
-            Expedita aperiam, id neque quam et accusantium. Quas voluptatum eum cum ipsa!
+			Working with element height is different than working with element width. The
+			border-box fixes you’ve made thus far still apply and can be helpful; but, typically
+			it’s best to avoid setting explicit heights on elements. Normal document flow is
+			designed to work with a constrained width and an unlimited height. Contents fill
+			the width of the viewport and then line wrap as necessary. Because of this, the
+			height of a container is organically determined by its contents, not by the container
+			itself.
+			<code>
+				Normal document flow refers to the default layout behavior of elements on the
+				page. Inline elements flow along with the text of the page, from left to right,
+				line wrapping when they reach the edge of their container. Block-level elements 
+				fall on individual lines, with a line break above and below.
+			</code>
+			<h3>Controlling overflow behavior</h3>
+			<p>
+				When you explicitly set an element’s height, you run the risk of its contents overflowing
+				the container. This happens when the content doesn’t fit the specified constraint and
+				renders outside of the parent element. Figure 3.8 shows this behavior. Document flow
+				doesn’t account for overflow, and any content below the container will render over
+				the top of the overflowing content.
+				<code>
+					your code here
+				</code>
+			</p>
+			<p>
+				You can control the exact behavior of the overflowing content with the overflow
+				property, which supports four values:
+				<ul>
+					<li>visible (default value)—All content is visible, even when it overflows the container’s edges.</li>
+					<li>hidden—Content that overflows the container’s padding edge is clipped and won’t be visible.</li>
+					<li>scroll—Scrollbars are added to the container so the user can scroll to see the
+						remaining content. On some operating systems, both horizontal and vertical
+						scrollbars are added, even if all the content is visible. In this case, the scrollbars
+						will be disabled (grayed).</li>
+					<li>auto—Scrollbars are added to the container only if the contents overflow.</li>
+				</ul>
+				Typically, I prefer auto rather than scroll because, in most cases, I don't want the
+				scrollbars to appear except when necessary. Figure 3.9 shows four containers with
+				these overflow settings.
+			</p>
+			<code>
+				your code here
+			</code>
         </p>
+		<p>
+			Be judicious with the use of scrollbars. Browsers insert a scrollbar for scrolling the
+			page, and adding nested scrollable areas inside your page can be frustrating to users.
+			If a user is using a mouse scroll wheel to scroll down the page, and their cursor
+			reaches a smaller scrollable area, their scroll wheel will stop scrolling the page and will
+			scroll the smaller box instead.
+		</p>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Porro tenetur accusantium, vel excepturi error illo sunt 
-            labore suscipit deserunt eum in dignissimos voluptate ipsa 
-            molestias itaque veniam amet, eius magni.
+            <code>
+				<h3> Horizontal overflow</h3>
+				<p>
+					It’s possible for content to overflow horizontally, not just vertically. One typical situation 
+					is when a long URL appears in a narrow container. The same rules apply here as
+					 with vertical overflow.
+				</p>
+				<p>
+					You can control only horizontal overflow using the overflow-x property, or vertical
+					overflow with overflow-y. These properties support the same values as the over
+					flow property. Explicitly setting both x and y to different values, however, tends to
+					have unpredictable results.
+				</p>
+			</code>
         </p>
+		<h3>Applying alternatives to percentage-based heights</h3>
+		<p>
+			Specifying height using a percentage is problematic. Percentage refers to the size of
+			an element’s containing block; the height of that container, however, is typically determined 
+			by the height of its children. This produces a circular definition that the
+			browser can’t resolve, so it’ll ignore the declaration. For percentage-based heights to
+			work, the parent must have an explicitly defined height.
+		</p>
+		<p>
+			One reason people try to use percentage-based heights is to make a container fill
+			the screen. A better approach is to use the viewport-relative vh units, which you
+			reviewed in chapter 2. A height of 100 vh is exactly the height of the viewport. The
+			most common use, though, is to create columns of equal height. This too can be
+			solved without a percentage.
+		</p>
+		<h3>COLUMNS OF EQUAL HEIGHT</h3>
+		<p>
+			The columns-of-equal-height problem is one weakness that has plagued CSS from the
+			beginning. In the early 2000s, CSS supplanted the use of HTML tables for laying out
+			content. At the time, tables were the only way to produce two columns of equal
+			height, or, more specifically, columns of the same height without explicitly specifying
+			the height. You could easily set all columns to a height of 500 px or some other 
+			arbitrary value. But if you allowed the columns to determine their heights naturally, each
+			element would evaluate to a different height, based on its content. This became a simple 
+			use case fraught with frustration.		   
+		</p>
+		<p>
+			It took some creative hacks to work around the issue. As CSS evolved, solutions
+			involving pseudo-elements or negative margins emerged. If you’re still using any of
+			these complicated methods, it’s time to fix that. Modern browsers make it much easier 
+			they support CSS tables. For example, IE8+ supports display: table, and IE10+
+			allows for a flexible box, or flexbox, both of which, by default, produce equal-height
+			columns.
+		</p>
+		<code>
+			NOTE When I say modern browsers, I mean recent versions of auto-updating,
+			(evergreen) browsers. These include Chrome, Firefox, Edge, Opera, and, in
+			most cases, Safari. Internet Explorer is the biggest concern; if I say something
+			is supported in IE10+, that generally implies the evergreen browsers support
+			it as well.
+		</code>
+		<p>
+			A number of common designs call for equal-height columns. Your two-column page is
+			a great example. It’d look more polished if you were to align the heights of the main
+			column and the sidebar (figure 3.10). As the content in either column grows, each
+			column will grow as needed so the bottoms are always flush.
+		</p>
+		<code>
+			insert git here
+		</code>
+		<p>
+			You could accomplish this by setting an arbitrary height on both columns, but what
+			value would you choose? Too big, and you’ll have a large empty space at the bottom of
+			your containers; too small, and you’ll have overflow to deal with.
+		</p>
+		<p>
+			The best solution is for the columns to size themselves naturally, and then extend
+			the shorter column so that its height is equal to the height of the taller one. I’ll show
+			you how to do this using both CSS-based table layouts and a flexbox.
+		</p>
+		<h3>CSS TABLE LAYOUTS</h3>
+		<p>
+			First, you’ll use a CSS-based table layout. Instead of using floats, you’ll make the con
+			tainer a display: table and each column a display: table-cell. Update your styles 
+			to match listing 3.9. (You may notice there’s no table-row element. With CSS tables,
+			the inclusion of a row element isn’t as strict a requirement as it is with HTML tables.)			
+		</p>
+		<code>
+			insert git here
+		</code>
+		<p>
+			By default, an element with a table display value won’t expand to a 100% width like a
+			block element will, so you’ll have to declare the width explicitly b. This code gets you
+			close, but now the gutter is missing. That’s because margins c can’t be applied to
+			table-cell elements. You’ll have to make more changes to get this exactly how you
+			want it.
+		</p>
+		<p>
+			To define space between cells of a table, you can use the border-spacing prop
+			erty of the table element. This property accepts two length values: one for horizontal 
+			spacing and one for vertical spacing. (You can also specify only one value to apply
+			 to both.) You could add border-spacing: 1.5em 0 to your container, but this has a
+			 peculiar side effect: that value is also applied to the outside edges of the table. Now
+			 your two columns no longer align with the header on the left and right edges (figure 3.11).
+		</p>
+		<code>
+			insert git here
+		</code>
+		<p>
+			You can fix this with the clever use of a negative margin, but that needs to go on a new
+			container that wraps around the whole table. Here’s how. Add a <xmp><div class="wrapper"> </xmp> 
+			around the container and apply a left and right margin of -1.5 em to counteract
+			the 1.5 em of the border spacing on the sidebars. This portion of your stylesheet
+			should look like this.
+		</p>
+		<code>
+			insert git here
+		</code>
+		<p>
+			Instead of positive margins pushing in the edges of the container, the negative margin
+			pulls the edges out. Combined with border-spacing, the outside column edges now
+			align with the edges of the <xmp><body></xmp> (the containing box for the wrapper). You now have
+			the layout you want: two columns with equal height, a 1.5 em gutter, and outside
+			edges that align with the header (figure 3.12).
+		</p>
+		<code>
+			insert git here
+		</code>
+		<p>
+			Negative margins have some interesting uses that we’ll look at in a bit.
+		</p>
+		<code>
+			<h3>Tables for layout?</h3>
+				<p>
+					If you’ve worked in web development for a while, you’ve likely heard that it’s bad practice 
+					to use HTML tables for layouts. Many website designers in the early 2000s laid
+					out their sites using <xmp><table></xmp> elements. It was often easier to lay out pages using
+					tables instead of fighting with floats (the only viable alternative at the time). 
+					Eventually, there was a lot of backlash against the use of tables for layouts because doing
+					so meant using non-semantic HTML. Instead of the HTML tags representing content,
+					they were doing the work of layout—something CSS should be responsible for.
+				</p>
+				<p>
+					Browsers now support table display for all sorts of elements other than <xmp><table></xmp>, so
+					you can enjoy the benefits of table layouts and maintain semantic markup. It’s not a
+					"holy grail" solution, however. The HTML table attributes colspan and rowspan have
+					no equivalent, and floats, flexboxes, and inline-blocks can layout content in ways that
+					tables can’t.
+				</p>
+		</code>
 
 		<h2>Next Steps</h2>
 		<p>
