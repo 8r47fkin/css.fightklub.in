@@ -110,7 +110,7 @@
 			"Responsive Design": {
                 "Mobile First": "api/en/css/layouts/responsive/mobile-first",
 				"Media Queries": "api/en/css/layouts/responsive/media-queries",
-				"Fluid Layouts": "api/en/css/layouts/responsive/fluid-layout",
+				"Fluid Layouts": "api/en/css/layouts/responsive/fluid-layouts",
 				"Responsive Images": "api/en/css/layouts/responsive/responsive-images"
 			}
 
