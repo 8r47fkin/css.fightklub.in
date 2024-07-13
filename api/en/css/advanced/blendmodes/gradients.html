@@ -5,14 +5,45 @@
 		<base href="../../../../../" />
 		<script src="page.js"></script>
 		<link type="text/css" rel="stylesheet" href="page.css" />
+		<style>
+
+			.conta {
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+			}
+		
+			.box {
+				width: 200px;
+				height: 200px;
+				border-radius: 10px;
+			}
+		
+			/* Linear Gradient with Multiple Color Stops */
+			.linear-gradient-box {
+				background: linear-gradient(to right, #ff7e5f, #feb47b, #86a8e7, #91eae4);
+			}
+		
+			/* Radial Gradient */
+			.radial-gradient-box {
+				background: radial-gradient(circle, #ff9a9e, #fad0c4, #fad0c4);
+			}
+		
+			/* Angular Gradient (Conic Gradient) */
+			.conic-gradient-box {
+				background: conic-gradient(from 90deg, #ff6a00, #ee0979, #ff6a00);
+			}
+		</style>
 	</head>
 	<body>
-		<h1>Title here</h1>
+		<h1>Gradients</h1>
         <br>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-            Dolor explicabo distinctio, nobis odit quia consectetur ea maiores doloremque! 
-            Expedita aperiam, id neque quam et accusantium. Quas voluptatum eum cum ipsa!
+            <div class="conta">
+				<div class="box linear-gradient-box">Linear Gradient</div>
+				<div class="box radial-gradient-box">Radial Gradient</div>
+				<div class="box conic-gradient-box">Conic Gradient</div>
+			</div>
         </p>
         <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. 

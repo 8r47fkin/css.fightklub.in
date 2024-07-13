@@ -21,6 +21,99 @@
 				}
 				}
 		</style>
+		 <style>
+			/* Transition Example */
+			.transition-box {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				transition: all 2s ease-in-out;
+			}
+			.transition-box:hover {
+				background-color: green;
+				transform: translateX(100px);
+				opacity: 0.5;
+			}
+	
+			/* Transform Example */
+			.transform-box {
+				width: 100px;
+				height: 100px;
+				background-color: yellow;
+				margin-top: 20px;
+				transition: all 2s;
+			}
+			.transform-box:hover {
+				transform: rotate(45deg) scale(1.5) skew(20deg, 20deg);
+				background-color: green;
+			}
+	
+			/* 3D Transform Example */
+			.transform-3d-box {
+				width: 100px;
+				height: 100px;
+				background-color: purple;
+				margin-top: 20px;
+				transition: transform 2s;
+			}
+			.transform-3d-box:hover {
+				transform: translateZ(100px);
+			}
+	
+			/* Animation Example */
+			.animation-box {
+				width: 100px;
+				height: 100px;
+				background-color: orange;
+				margin-top: 20px;
+				animation: exampleAnimation 5s ease-in-out 1s infinite alternate both;
+			}
+	
+			@keyframes exampleAnimation {
+				0% {
+					transform: rotateY(0);
+					background-color: red;
+				}
+				50% {
+					transform: rotateY(180deg) translateZ(50px);
+					background-color: yellow;
+				}
+				100% {
+					transform: rotateY(360deg);
+					background-color: green;
+				}
+			}
+		</style>
+
+<style>
+
+	.conta {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.box {
+		width: 200px;
+		height: 200px;
+		border-radius: 10px;
+	}
+
+	/* Linear Gradient with Multiple Color Stops */
+	.linear-gradient-box {
+		background: linear-gradient(to right, #ff7e5f, #feb47b, #86a8e7, #91eae4);
+	}
+
+	/* Radial Gradient */
+	.radial-gradient-box {
+		background: radial-gradient(circle, #ff9a9e, #fad0c4, #fad0c4);
+	}
+
+	/* Angular Gradient (Conic Gradient) */
+	.conic-gradient-box {
+		background: conic-gradient(from 90deg, #ff6a00, #ee0979, #ff6a00);
+	}
+</style>
 	</head>
 	<body>
 		<h1>Advanced topics</h1>
@@ -28,14 +121,18 @@
 		<p>
 			A polished UI is important. Users tend to trust a professional-looking
  application, and they may be inclined to spend more time using a site if it’s aesthetically pleasing. In the final chapters, 
+ 				<img src="/api/en/css/advanced/gih.gif" alt="Background shadows Blendmodes, contrast Color and spacing Typography" width="40%">
             <ul>
                 <li>[link:#api/en/css/advanced/blendmodes/blend Background Shadows and Blendmodes]</a></li>
                 <li>[link:#api/en/css/advanced/ccs/ccs Contrast Color and Spacing]</a></li>
-                <li>[link:#api/en/css/advanced/typography/typography Typography]</a></li>
-				<img src="/api/en/css/advanced/gih.gif" alt="Background shadows Blendmodes, contrast Color and spacing Typography" width="40%">
-                <li>[link:#api/en/css/advanced/transitions/transitioning Transitions]</a></li>
-                <li>[link:#api/en/css/advanced/transforms/transforms Transforms]</a></li>
-                <li>[link:#api/en/css/advanced/animations/animations Animations]</a></li>
+                <li>[link:#api/en/css/advanced/typography/typography Typography]</a></li>	
+				<div class="transition-box"><li>[link:#api/en/css/advanced/transitions/transitioning Transitions]</a></li>cursor here</div>
+                <div class="transform-box"><li>[link:#api/en/css/advanced/transforms/transforms Transforms]</a></li>cursor here</div>
+				<div class="animation-box"><li>[link:#api/en/css/advanced/animations/animations Animations]</a></li></div>
+                
+				
+                
+				
             </ul>   
             we’ll look at important considerations for design. These are small details that can have a big impact on the look
  and feel of your site.
