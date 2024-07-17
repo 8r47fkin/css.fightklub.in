@@ -10,29 +10,28 @@
 		<h1>Inheritance</h1>
         <br>
         <p>
-            There’s one last way that an element can receive styles—inheritance. The cascade is fre
-            quently conflated with the concept of inheritance. Although the two topics are
+            There’s one last way that an element can receive styles—inheritance. The cascade is frequently conflated with the concept of inheritance. Although the two topics are
              related, you should understand each individually.
         </p>
         <p>
             If an element has no cascaded value for a given property, it may inherit one from
-            an ancestor element. It’s common to apply a font-family to the <body> element. All
+            an ancestor element. It’s common to apply a font-family to the <xmp><body></xmp> element. All
             the ancestor elements within will then inherit this font; you don’t have to apply it
             explicitly to each element on the page. Figure 1.8 shows how inheritance flows down
             the DOM tree.
         </p>
         <p>
-            Not all properties are inherited, however. By default, only certain ones are. In gen
-            eral, these are the properties you’ll want to be inherited. They are primarily properties
+            Not all properties are inherited, however. By default, only certain ones are. In general, these are the properties you’ll want to be inherited. They are primarily properties
              pertaining to text: color, font, font-family, font-size, font-weight, font-variant,
              font-style, line-height, letter-spacing, text-align, text-indent, text-transform,
              white-space, and word-spacing.
         </p>
-        <p>A few others inherit as well, such as the list properties: list-style, list-style-type, 
+        <p>
+            A few others inherit as well, such as the list properties: list-style, list-style-type, 
             list-style-position, and list-style-image. The table border properties,
             border-collapse and border-spacing, are also inherited; note that these control
             border behavior of tables, not the more commonly used properties for specifying
-            borders for non-table elements. (We wouldn’t want a <div> passing its border down to
+            borders for non-table elements. (We wouldn’t want a <XMP><div></XMP> passing its border down to
             every descendant element.) This is not quite a comprehensive list, but very nearly.
            </p>
            <img src="/api/en/css/fundamentals/csi/ex4.png" alt="inheritance" style="max-width: 100%; height: auto;">
@@ -40,14 +39,14 @@
             You can use inheritance in your favor on your page by applying a font to the body
             element, allowing its descendant elements to inherit that value (figure 1.9).
            </p>
-           <code>
-            code update here - ref 1.9
-           </code>
+           <img src="/api/en/css/fundamentals/csi/ex1.png" alt="header fightklub.in" style="max-width: 100%; height: auto;">
            <p>
             Add this code to the top of your stylesheet to apply this principle to your page.
            </p>
            <code>
-            code update here - ref 1.13
+            body {
+                font-family: sans-serif;
+               }
            </code>
            <p>
             This is applied to the entire page by adding it to the body. But you can also target a

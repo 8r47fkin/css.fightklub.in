@@ -5,6 +5,7 @@
 		"CSS": {
 
 			"Contents": {
+				"Introduction": "api/en/css/css",
 				"Reviewing the Fundamentals": "api/en/css/fundamentals/fundamentals",
 				"Mastering Layouts": "api/en/css/layouts/layouts",
 				"CSS at Scale": "api/en/css/scale/scale",
@@ -48,6 +49,7 @@
 
 			"Cascade, Specificity and Inheritance": {
                 "The Cascade": "api/en/css/fundamentals/csi/cascade",
+                "Specificity": "api/en/css/fundamentals/csi/specificity",
 				"Inheritance": "api/en/css/fundamentals/csi/inheritance",
 				"Special Values": "api/en/css/fundamentals/csi/specialvalues",
 				"Short hand properties": "api/en/css/fundamentals/csi/shorthand"

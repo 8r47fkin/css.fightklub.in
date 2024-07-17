@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<base href="../../../../../" />
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+<h1> Understanding specificity</h1>
+<p>
+    If conflicting declarations can’t be resolved based on their origin, the browser next
+    tries to resolve them by looking at their specificity. Understanding specificity is essential. 
+    You can go a long way without an understanding of stylesheet origin because 99%
+    of the styles on your website come from the same origin. But if you don’t understand
+    specificity, it will bite you. Sadly, it’s often a missed concept. 
+</p>
+<p>
+    The browser evaluates specificity in two parts: 
+    <ul>
+        <li>styles applied inline in the HTML</li>
+        <li>styles applied using a selector</li>
+    </ul>
+<img src="/api/en/css/fundamentals/csi/8.jpg" alt="" width="100%">
+
+</p>
+<h3><b>INLINE STYLES</b></h3>
+<p>
+    If you use an HTML style attribute to apply styles, the declarations are applied only
+ to that element. These are, in effect, “scoped” declarations, which override any decla
+rations applied from your stylesheet or a <xmp><style></style></xmp> tag. Inline styles have no selector
+ because they are applied directly to the element they target.
+</p>
+<p>
+    In your page, you want the featured Klub link in the navigation menu to be
+ orange, as shown in figure 1.6. I’ll evaluate several ways you can accomplish this,
+ beginning with inline styles in listing 1.4.
+ <p>
+
+ 
+<img src="/api/en/css/fundamentals/csi/fk4.gif" alt="" width="100%">
+</p>
+
+
+<img src="/api/en/css/fundamentals/csi/ex3.2.png" alt="" width="100%">
+
+</p>
+
+<p>
+    To see this in your browser, edit your page to match the code given here. (You’ll undo
+ this change in a moment.)
+</p>
+<code>
+    <xmp>
+    <li>
+        <a href="" 
+        class="featured"
+        style="background-color: orange;"
+        >
+            Klub
+        </a>
+    </li>
+</xmp>
+</code>
+<p>
+    To override inline declarations in your stylesheet, you’ll need to add an !important to
+ the declaration, shifting it into a higher-priority origin. If the inline styles are marked
+ important, then nothing can override them. It’s preferable to do this from within the
+ stylesheet. Undo this change, and we’ll look at better approaches.
+</p>
+<h3><b>SELECTOR SPECIFICITY</b></h3>
+<p>
+    The second part of specificity is determined by the selectors. For instance, a selector
+    with two class names has a higher specificity than a selector with only one. If one declaration 
+    sets a background to orange, but another with higher specificity sets it to teal,
+    the browser applies the teal color.
+</p>
+<p>
+    To illustrate, let’s see what happens when we try to turn the featured link orange
+ with a simple class selector. Update the final part of your stylesheet so it matches the
+ code given here.
+</p>
+<img src="/api/en/css/fundamentals/csi/fk5.gif" alt="" width="100%">
+
+<p>
+    It doesn’t work! All the links remain teal. Why? The first selector here is more specific
+    than the second. It’s made up of an ID and a tag name, whereas the second is made
+    up of a class name. There’s more to this than merely seeing which selector is longer,
+    however. 
+</p>
+<p>
+    Different types of selectors also have different specificities. An ID selector has a
+ higher specificity than a class selector, for example. In fact, a single ID has a higher
+ specificity than a selector with any number of classes. Similarly, a class selector has a
+ higher specificity than a tag selector (also called a type selector).
+</p>
+<p>The exact rules of specificity are: </p>
+<p>
+    <ul>
+        <li> If a selector has more IDs, it wins (that is, it’s more specific).</li>
+        <li>If that results in a tie, the selector with the most classes wins. </li>
+        <li>If that results in a tie, the selector with the most tag names wins.</li>
+    </ul>
+    Consider the selectors shown in the following listing (but don’t add them to your
+ page). These are written in order of increasing specificity.
+</p>
+<img src="/api/en/css/fundamentals/csi/fk6.gif" alt="" width="100%">
+
+
+<p>
+    The most specific selector here is last one with one ID, so its color declaration of red is
+ applied to the title. The next specific is with two class names. This would be
+ applied if the ID selector were absent. ID Selector has a higher specificity than
+ selector class, despite its length: two classes are more specific than one class. Finally, tags
+ is the least specific, with four element types (that is, tag names) but no IDs or classes.
+</p>
+
+<code>
+    NOTE Pseudo-class selectors (for example, :hover) and attribute selectors
+    (for example, [type="input"]) each have the same specificity as a class selec
+   tor. The universal selector (*) and combinators (>, +, ~) have no effect on
+    specificity.
+</code>
+
+<p>
+    If you add a declaration to your CSS and it seems to have no effect, often it’s because a
+    more specific rule is overriding it. Many times developers write selectors using IDs,
+    without realizing this creates a higher specificity, one that is hard to override later. If
+    you need to override a style applied using an ID, you have to use another ID.
+</p>
+
+<p>
+    It’s a simple concept, but if you don’t understand specificity, you can drive yourself
+    mad trying to figure out why one rule works and another doesn’t.
+</p>
+
+<h3><b> A NOTATION FOR SPECIFICITY</b></h3>
+<p>
+    A common way to indicate specificity is in a number form, often with commas
+    between each number. For example, “1,2,2” indicates a specificity of one ID, two
+    classes, and two tags. IDs having the highest priority are listed first, followed by classes,
+    then tags.
+</p>
+<p>
+    The selector #page-header #page-title has two IDs, no classes, and no tags. We
+    can say this has a specificity of 2,0,0. The selector ul li, with two tags but no IDs or
+    classes, has a specificity of 0,0,2. Table 1.1 shows the selectors from listing 1.6.   
+</p>
+<table>
+    <tr>
+        <th>Selector</th>
+        <th>IDs</th>
+        <th>Classes</th>
+        <th>Tags</th>
+        <th>Notations</th>
+    </tr>
+    <tr>
+        <th>html body header h1</th>
+        <th>0</th>
+        <th>0</th>
+        <th>4</th>
+        <th>0,0,4</th>
+    </tr>
+    <tr>
+        <th>body header.page-header h1</th>
+        <th>0</th>
+        <th>1</th>
+        <th>3</th>
+        <th>0,1,3</th>
+    </tr>
+    <tr>
+        <th>.page-header .title</th>
+        <th>0</th>
+        <th>2</th>
+        <th>0</th>
+        <th>0,2,0</th>
+    </tr>
+    <tr>
+        <th>.page-title</th>
+        <th>1</th>
+        <th>0</th>
+        <th>0</th>
+        <th>1,0,0</th>
+    </tr>
+</table>
+<p>
+    It now becomes a matter of comparing the numbers to determine which selector is
+ more specific. A specificity of 1,0,0 takes precedence over a specificity of 0,2,2 and
+ even over 0,10,0 (although I don’t recommend ever writing selectors as long as one
+ with 10 classes), because the first number (IDs) is of the higher priority.
+</p>
+<p>
+    Occasionally, people use a four-number notation with a 0 or 1 in the most significant 
+    digit to represent whether a declaration is applied via inline styles. In this case, an
+ inline style has a specificity of 1,0,0,0. This would override styles applied via selectors,
+ which could be indicated as having specificities of 0,1,2,0 (one ID and two classes) or
+ something similar.
+</p>
+<h3><b> SPECIFICITY CONSIDERATIONS</b></h3>
+<p>
+    When you tried to apply the orange background using the .featured selector, it didn’t
+ work. The selector #main-nav a has an ID that overrides the class selector (specificities
+ 1,0,1 and 0,1,0). To correct this, you have some options to consider. Let’s look at several possible fixes.
+</p>
+<p>
+    The quickest fix is to add an !important to the declaration you want to favor.
+    Change the declaration to match that given here.
+</p>
+<img src="/api/en/css/fundamentals/csi/fk7.gif" alt="" width="100%">
+
+<p>
+    This works because the !important annotation raises the declaration to a higher
+    priority origin. Sure, it’s easy, but it’s also a naive fix. It may do the trick now, but it can
+     cause you problems down the road. If you start adding !important to multiple declarations, 
+     what happens when you need to trump something already set to important?
+     When you give several declarations an !important, then the origins match and the 
+     regular specificity rules apply. This ultimately will leave you back where you started;
+     once you introduce an !important, more are likely to follow.    
+</p>
+<p>
+    Let’s find a better way. Instead of trying to get around the rules of selector specificity, 
+    let’s try to make them work for us. What if you raised the specificity of your selector? 
+    Update the rulesets in your CSS to match this listing.
+</p>
+<img src="/api/en/css/fundamentals/csi/fk8.gif" alt="" width="100%">
+<p>
+    This fix also works. Now, your selector has one ID and one class, giving it a specificity
+    of 1,1,0, which is higher than #main-nav a (a specificity of 1,0,1), so the background
+    color orange is applied to the element.
+</p>
+<p>
+    You can still make this better, though. Instead of raising the specificity of the sec
+    ond selector, let’s see if we can lower the specificity of the first. The element has a class
+     as well: <xmp><ul id="main-nav" class="nav"></xmp>, so you can change your CSS to target the
+     element by its class name rather than its ID. Change #main-nav to .nav in your selec
+    tors as shown here.
+</p>
+<img src="/api/en/css/fundamentals/csi/fk9.gif" alt="" width="100%">
+
+<p>
+    You’ve brought the specificity of the selectors down. The orange background is high
+ enough to override the teal.
+</p>
+<p>
+    As you can see from these examples, specificity tends to become a sort of arms race.
+    This is particularly the case with large projects. It is generally best to keep specificity low
+    when you can, so when you need to override something, your options are open.
+</p>
+<h3><b>Understanding source order</b></h3>
+<p> The third and final step to resolving the cascade is source order. If the origin and the
+    specificity are the same, then the declaration that appears later in the stylesheet—or
+    appears in a stylesheet included later on the page—takes precedence.</p>
+    <p>
+        This means you can manipulate the source order to style your featured link. If you
+ make the two conflicting selectors equal in specificity, then whichever appears last
+ wins. Let’s consider the fourth option shown in the following listing.
+    </p>
+<img src="/api/en/css/fundamentals/csi/fk10.gif" alt="" width="100%">
+
+    <p>
+        In this solution, the specificities are equal. Source order determines which declaration
+        is applied to your link, resulting in an orange featured button.
+    </p>
+    <p> This addresses your problem but, potentially, also introduces a new one: although
+        a featured button inside the nav looks correct, what happens if you want to use the
+        featured class on another link elsewhere on the page, outside of your nav? You’ll get
+        an odd blend of styles: the orange background, but not the text color, padding, or
+        border radius of the navigational links (figure 1.7).
+    </p>
+    <img src="/api/en/css/fundamentals/csi/fk11.gif" alt="" width="100%">
+    <p>
+        Listing 1.11 shows the markup that creates this behavior. There’s now an element targeted only by the second selector, but not the first, which produces an undesirable
+         result. You’ll have to decide whether you want this orange button style to work outside
+         of the nav, and if you do, you’ll need to make sure all the desired styles apply to it as well.
+    </p>
+    <p>
+        With no other information about your needs on this site, I’d be inclined to stick with
+        fix number three (listing 1.9). Ideally on your website, you’ll be able to make some
+        educated guesses about your needs elsewhere. Perhaps you know that you are likely to
+        need a featured link in other places. In that case, perhaps fix four (listing 1.10) would
+        be what you want, with the addition of styles to support the featured class elsewhere
+        on the page.
+    </p>
+    <p>
+        Very often in CSS, as I said earlier, the best answer is “it depends.” There are many
+ paths to the same end result. It’s worth considering several options and thinking
+ about the ramifications of each. When facing a styling problem, I often tackle it in two
+ phases: First figure out what declarations will get it looking right. Second, think
+ through the possible ways to structure the selectors and choose the one that best fits
+ your needs.
+    </p>
+    <h3><b> LINK STYLES AND SOURCE ORDER</b></h3>
+    <p>
+        When you began studying CSS, you may have learned that your selectors for styling
+ links should go in a certain order. That’s because source order affects the cascade.
+ This listing shows styles for links on a page in the “correct” order.
+    </p>
+    <xmp>
+        a:link {
+            color: blue;
+            text-decoration: none;
+           }
+
+        a:visited {
+            color: purple;
+           }
+
+        a:hover {
+            text-decoration: underline;
+           }
+
+        a:active {
+            color: red;
+           }
+    </xmp>
+    <p>
+        The cascade is the reason this order matters: given the same specificity, later styles
+ override earlier styles. If two or more of these states are true of one element at the
+ same time, the last one can override the others. If the user hovers over a visited link,
+ the hover styles take precedence. If the user activates the link (that is, clicks it) while
+ hovering over it, the active styles take precedence.
+    </p>
+    <p>
+        A helpful mnemonic to remember this order is LoVe/HAte—link, visited, hover,
+        active. Note that if you change one of the selectors to have a different specificity than
+        the others, this will break down and you may get unexpected results.
+    </p>
+    <h3><b> CASCADED VALUES</b></h3>
+    <p>
+        The browser follows these three steps—origin, specificity, and source order to resolve
+        every property for every element on the page. A declaration that “wins” the cascade is
+        called a <i>cascaded value</i>. There’s at most one cascaded value per property per element.
+        A particular paragraph <xmp><p></xmp> on the page can have a top margin and a bottom margin, but it can’t have two different top margins or two different bottom margins. If the
+        CSS specifies different values for one property, the cascade will choose only one when
+        rendering the element. This is the cascaded value.
+    </p>
+    <code>
+        cascaded value — A value for a particular property applied to an element as a
+        result of the cascade.
+    </code>
+    <p>
+        If a property is never specified for an element, it has no cascaded value for that property. The same paragraph, for instance, may not have a border or padding specified.
+    </p>
+
+    <h3><b>Two rules of thumb</b></h3>
+    <p>
+        As you may know, there are two common rules of thumb for working with the cascade.
+        Because these can be helpful, here’s a reminder:
+        <ol>
+            <li><i>Don’t use IDs in your selector.</i> Even one ID ratchets up the specificity a lot. When
+                you need to override the selector, you often don’t have another meaningful ID
+                you can use, so you wind up having to copy the original selector and add
+                another class to distinguish it from the one you are trying to override.
+               </li>
+               <li><i>Don’t use !important.</i> This is even more difficult to override than an ID, and once
+                you use it, you’ll need to add it every time you want to override the original dec
+               laration — and then you still have to deal with the specificity.</li>
+        </ol>
+        These two rules can be good advice, but don’t cling to them forever. There are exceptions where they can be okay, but never use them in a knee-jerk reaction to win a specificity battle.
+<code>
+    An important note about importance
+    If you’re creating a JavaScript module for distribution (such as an NPM package),
+    I strongly urge you not to apply styles inline via JavaScript if it can be avoided. If you
+    do, you’re forcing developers using your package to either accept your styles exactly
+    or use !important for every property they want to change.
+    Instead, include a stylesheet in your package. If your component needs to make style
+    changes dynamically, it’s almost always preferable to use JavaScript to add and
+    remove classes to the elements. Then users can use your stylesheet, and they have
+    the option to edit it however they like without battling specificity.
+</code>
+A series of practical methodologies has emerged in the last few years to help with managing selector specificity. We’ll look at those in detail in chapter 9. There I’ll talk more
+ about dealing with specificity, including one place that !important is okay. But now
+ that you’re clear on how the cascade behaves, we can press on.
+    </p>
+
+		<h2>Next Steps</h2>
+		<p>
+			Let's Inherit [link:#api/en/css/fundamentals/csi/inheritance Inheritance].
+		</p>
+	</body>
+</html>
+
+
+
+
+
+
